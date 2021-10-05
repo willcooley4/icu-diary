@@ -8,7 +8,7 @@ def create_app(test_config=None):
     app = Flask(__name__, instance_relative_config=True)
     app.config.from_mapping(
         SECRET_KEY='dev',
-        DATABASE="postgres://postgres:password@127.0.0.1:5432/icu_diary"
+        DATABASE="postgres://postgres:password@127.0.0.1:5432/icu_diary",
         # DATABASE=os.path.join(app.instance_path, 'diary.'),
     )
     
