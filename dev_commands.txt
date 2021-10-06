@@ -1,0 +1,5 @@
+# Start postgresql on local machine
+sudo service postgresql start
+
+# Sign in to icu_diary db on command line
+psql -U postgres icu_diary

@@ -5,7 +5,7 @@ from flask import (
 )
 # from werkzeug.security import check_password_hash, generate_password_hash
 
-# from diary.db import get_db
+from diary.db import get_db
 
 bp = Blueprint('auth', __name__, url_prefix='/auth')
 
@@ -18,7 +18,25 @@ bp = Blueprint('auth', __name__, url_prefix='/auth')
 @bp.route('/login', methods=('GET', 'POST'))
 def login():
     if request.method == 'POST':
-        pass
+        # Access form data
+        username = request.form.get('username')
+        password = request.form.get('password')
+
+        conn = get_db()
+        cur = conn.cursor()
+        cur.execute('''
+            SELECT * FROM users
+            WHERE username = '{}'
+        '''.format(username))
+        pw_check = cur.fetchone()['password']
+        if(pw_check == password):
+            return 'welcome ' + username
+        else:
+            return 'denied'
+
+        print('hi is this working')
+        print(username, password)
+        return username + password
     else:  # GET
         return render_template('auth/login.html')
 
@@ -27,11 +45,11 @@ def login():
 @bp.route('/signup', methods=('GET', 'POST'))
 def signup():
     # TODO
-    return ''
+    return 'signup'
 
 # Page for users to log out of account
 # Redirects to login once form submitted
 @bp.route('/logout', methods=('POST',))
 def logout():
     # TODO
-    return ''
+    return 'logout'
