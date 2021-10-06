@@ -1,5 +1,5 @@
 import os
-from flask import Flask
+from flask import Flask, session
 
 
 def create_app(test_config=None):
@@ -31,13 +31,13 @@ def create_app(test_config=None):
     # use blueprint for authorization pages
     from diary import auth
     app.register_blueprint(auth.bp)
-    '''
+
     # home page for all users
     # shows linked pages the user has access to
     @app.route('/')
     def home():
         #todo
-        return ''
+        return session['username']
 
     # diary entry page for doctor and contributors
     # allows for standard, templated, or media submissions
@@ -72,6 +72,5 @@ def create_app(test_config=None):
     def create_diary():
         #todo
         return ''
-    '''
 
     return app

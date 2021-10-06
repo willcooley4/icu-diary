@@ -6,6 +6,8 @@ from flask import (
 # from werkzeug.security import check_password_hash, generate_password_hash
 
 from diary.db import get_db
+import uuid
+import hashlib
 
 bp = Blueprint('auth', __name__, url_prefix='/auth')
 
@@ -43,9 +45,11 @@ def login():
 def signup():
     # TODO: referral way
     # TODO: link to diary
-    # TODO: redirect if already logged in
-    # TODO: start session
-    # TODO: creation error headers
+    # TODO: create error headers
+    # TODO: handle profile picture upload
+    # TODO: include email
+    if 'username' in session:
+        return redirect('/')
     if request.method == 'POST':
         # Access form data
         username = request.form.get('username')
@@ -70,13 +74,31 @@ def signup():
         if row != None and row['username'] == username:
             return '400: username already exists'
 
-        return username + password + password2 + fullname + email
+        # Modify password for storage
+        salt = uuid.uuid4().hex
+        hash_obj = hashlib.new('sha512')
+        password_salted = salt + password
+        hash_obj.update(password_salted.encode('utf-8'))
+        password_hash = hash_obj.hexdigest()
+        password_db_string = "$".join(['sha512', salt, password_hash])
+
+        print(password_db_string)
+        # Create user account
+        cur.execute('''
+            INSERT INTO users(username, full_name, password, profile_pic)
+            VALUES ('{}', '{}', '{}', '{}')
+        '''.format(username, fullname, password_db_string, 'lala.jpg'))
+
+        # Start user session
+        session['username'] = username
+
+        return redirect('/')
     # GET
     return render_template('auth/signup.html')
 
 # Page for users to log out of account
 # Redirects to login once form submitted
-@bp.route('/logout', methods=('POST',))
+@bp.route('/logout', methods=('POST','GET'))
 def logout():
-    # TODO
-    return 'logout'
+    session.pop('username', None)
+    return redirect('/auth/login')
