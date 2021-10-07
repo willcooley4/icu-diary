@@ -16,9 +16,6 @@ bp = Blueprint('auth', __name__, url_prefix='/auth')
 # Redirects to home once form submitted
 @bp.route('/login', methods=('GET', 'POST'))
 def login():
-    # TODO: modify for hashed and salted passwords
-    # TODO: start session on login
-    # TODO: redirect if logged in
     if request.method == 'POST':
         # Access form data
         username = request.form.get('username')
