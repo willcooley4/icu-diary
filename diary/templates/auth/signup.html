@@ -10,8 +10,12 @@
     <link href="../../static/css/signin.css" rel="stylesheet">
   </head>
   <body class="text-center">
-      
     <main class="form-signin">
+        {% if e == 1 %}
+        <div class="alert alert-warning" role="alert">
+            {{ message }}
+        </div>
+        {% endif %}
       <form action="signup" method="post" enctype="multipart/form-data">
         <!-- TODO: use site's logo here -->
         <img class="mb-4" src="../assets/brand/bootstrap-logo.svg" alt="" width="72" height="57">

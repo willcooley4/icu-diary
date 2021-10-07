@@ -19,7 +19,6 @@ def login():
     # TODO: modify for hashed and salted passwords
     # TODO: start session on login
     # TODO: redirect if logged in
-    # TODO: login error headers
     if request.method == 'POST':
         # Access form data
         username = request.form.get('username')
@@ -35,7 +34,8 @@ def login():
 
         # check username exists
         if row == None:
-            return '400: username does not exist'
+            context = {'e': 1, 'message': 'Username does not exist.'}
+            return render_template('auth/login.html', **context)
 
         # modify input and stored password for hash comparison
         stored_pass = row['password'].split('$')
@@ -46,14 +46,16 @@ def login():
 
         # Check if valid password
         if row['password'] != '$'.join([stored_pass[0], stored_pass[1], hashed_input]):
-            return '400: password does not match username'
+            context = {'e': 1, 'message': 'Password does not match username.'}
+            return render_template('auth/login.html', **context)
 
         # Log user in on success, redirect to home page
         session['username'] = row['username']
         return redirect('/')
 
     # GET
-    return render_template('auth/login.html')
+    context = {'e': 0, 'message': ''}
+    return render_template('auth/login.html', **context)
 
 # Page for users to create a new account
 # Redirects to home once form submitted
@@ -61,7 +63,6 @@ def login():
 def signup():
     # TODO: referral way
     # TODO: link to diary
-    # TODO: create error headers
     # TODO: handle profile picture upload
     # TODO: include email
     if 'username' in session:
@@ -79,7 +80,8 @@ def signup():
 
         # check if both password entries match
         if password != password2:
-            return '400: passwords do not match'
+            context = {'e': 1, 'message': 'Passwords do not match.'}
+            return render_template('auth/signup.html', **context)
 
         # check that username is not taken
         cur.execute('''
@@ -88,7 +90,8 @@ def signup():
         '''.format(username))
         row = cur.fetchone()
         if row != None and row['username'] == username:
-            return '400: username already exists'
+            context = {'e': 1, 'message': 'Username already exists.'}
+            return render_template('auth/signup.html', **context)
 
         # Modify password for storage
         salt = uuid.uuid4().hex
@@ -111,7 +114,8 @@ def signup():
 
         return redirect('/')
     # GET
-    return render_template('auth/signup.html')
+    context = {'e': 0, 'message': ''}
+    return render_template('auth/signup.html', **context)
 
 # Page for users to log out of account
 # Redirects to login once form submitted
