@@ -35,6 +35,9 @@ def create_app(test_config=None):
     from diary import home
     app.register_blueprint(home.bp)
 
+    from diary.newentry import entry_page
+
+
     ''''
     # home page for all users
     # shows linked pages the user has access to
@@ -44,12 +47,14 @@ def create_app(test_config=None):
         return session['username']
     '''
 
+    '''
     # diary entry page for doctor and contributors
     # allows for standard, templated, or media submissions
     @app.route('/entry_page')
     def entry_page():
         #todo
         return ''
+    '''
 
     # diary viewing page for patient
     # scrollable page for diary entries, allows for pdf download
