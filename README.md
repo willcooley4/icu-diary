@@ -2,5 +2,5 @@
 
 to run:
 
-export FLASK_APP=diary
+export FLASK_APP=diary <br>
 flask run
