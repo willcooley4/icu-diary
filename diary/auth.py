@@ -31,11 +31,27 @@ def login():
             SELECT * FROM users
             WHERE username = '{}'
         '''.format(username))
-        pw_check = cur.fetchone()['password']
-        if(pw_check == password):
-            return 'welcome ' + username
-        else:
-            return 'denied'
+        row = cur.fetchone()
+
+        # check username exists
+        if row == None:
+            return '400: username does not exist'
+
+        # modify input and stored password for hash comparison
+        stored_pass = row['password'].split('$')
+        salted_input = stored_pass[1] + password
+        hashed_obj = hashlib.new(stored_pass[0])
+        hashed_obj.update(salted_input.encode('utf-8'))
+        hashed_input = hashed_obj.hexdigest()
+
+        # Check if valid password
+        if row['password'] != '$'.join([stored_pass[0], stored_pass[1], hashed_input]):
+            return '400: password does not match username'
+
+        # Log user in on success, redirect to home page
+        session['username'] = row['username']
+        return redirect('/')
+
     # GET
     return render_template('auth/login.html')
 
@@ -88,6 +104,7 @@ def signup():
             INSERT INTO users(username, full_name, password, profile_pic)
             VALUES ('{}', '{}', '{}', '{}')
         '''.format(username, fullname, password_db_string, 'lala.jpg'))
+        conn.commit()
 
         # Start user session
         session['username'] = username
