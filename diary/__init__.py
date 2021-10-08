@@ -32,12 +32,17 @@ def create_app(test_config=None):
     from diary import auth
     app.register_blueprint(auth.bp)
 
+    from diary import home
+    app.register_blueprint(home.bp)
+
+    ''''
     # home page for all users
     # shows linked pages the user has access to
     @app.route('/')
     def home():
         #todo
         return session['username']
+    '''
 
     # diary entry page for doctor and contributors
     # allows for standard, templated, or media submissions
