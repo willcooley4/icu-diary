@@ -1,6 +1,8 @@
 import os
 from flask import Flask, session
 
+from diary.newentry import entry_page
+
 
 def create_app(test_config=None):
     # create and configure the app
@@ -35,7 +37,8 @@ def create_app(test_config=None):
     from diary import home
     app.register_blueprint(home.bp)
 
-    from diary.newentry import entry_page
+    from diary import newentry
+    app.register_blueprint(newentry.bp)
 
 
     ''''
