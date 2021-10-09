@@ -3,7 +3,6 @@ from flask import (
 )
 
 from diary.db import get_db
-from werkzeug.wrappers import request
 import diary
 import flask
 
@@ -16,10 +15,14 @@ bp = Blueprint('entry_page', __name__)  # NOTE: url_prefix?
 @bp.route('/entry_page/', methods = ["POST", "GET"])
 def entry_page():
     # access form data
+
     title = request.form.get('title')
     content = request.form.get('content')
     media = request.form.get('media')
     author = flask.session["username"]
+
+
+    
 
     # access database and submit diary entry
 
@@ -27,9 +30,9 @@ def entry_page():
     cur = conn.cursor()
     cur.execute('''
         INSERT INTO diary_entries
-        (id, title, created, contents, media, author)
-        VALUES('{}', '{}', '{}', '{}')
-    '''.format(title, content, media, author))
+        (title, contents, media, author, diary_id)
+        VALUES('{}', '{}', '{}', '{}', '{}')
+    '''.format(title, content, media, author, 1))
     conn.commit()
     
 

@@ -1,0 +1,38 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-uWxY/CJNBR+1zjPWmfnSnVxwRheevXITnMqoEIeG1LJrdI0GlVs/9cVSyPYXdcSF" crossorigin="anonymous">
+
+    <title>new diary page</title>
+  </head>
+  <body>
+    <h1>New Diary Creation</h1>
+
+  <body class="text-center">
+      <form action="newdiary" method="post" enctype="multipart/form-data">
+
+        <div class="form-group">
+            <label for="patient">Please enter patient name</label>
+            <input type="text" class="form-control" id="patient" placeholder="Patient Name" name="patient">
+        </div>
+
+        <div class="form-group">
+            <label for="diary">Please enter diary name</label>
+            <input type="text" class="form-control" id="diary" placeholder="Diary Name" name="diary">
+        </div>
+
+        <div class="form-group">
+            <label for="ECemail">Email address</label>
+            <input type="email" class="form-control" id="ECemail" aria-describedby="emailHelp" placeholder="Enter email">
+            <small id="emailHelp" class="form-text text-muted">Please enter the patient's emergency contact email</small>
+        </div>
+
+      </form>
+  </body>
+
+</html>

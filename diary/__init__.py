@@ -40,6 +40,9 @@ def create_app(test_config=None):
     from diary import newentry
     app.register_blueprint(newentry.bp)
 
+    from diary import newdiary
+    app.register_blueprint(newdiary.bp)
+
 
     ''''
     # home page for all users
