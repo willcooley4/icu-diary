@@ -17,6 +17,9 @@ def entry_page():
     # access form data
     if 'username' not in session:
         return redirect('/auth/login')
+    
+    context = {'e': 0, 'message': ''}
+
     if request.method == 'POST':
         title = request.form.get('title')
         content = request.form.get('content')
@@ -32,8 +35,9 @@ def entry_page():
             VALUES('{}', '{}', '{}', '{}', '{}')
         '''.format(title, content, media, author, 1))
         conn.commit()
-        #return redirect('/')
+        context = {'e': 1, 'message': 'Message submitted!'}
+        return render_template('newentry.html', **context)
 
 
-    return render_template('newentry.html')
+    return render_template('newentry.html', **context)
 
