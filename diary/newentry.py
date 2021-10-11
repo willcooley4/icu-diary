@@ -15,7 +15,7 @@ bp = Blueprint('entry_page', __name__)  # NOTE: url_prefix?
 @bp.route('/entry_page/', methods = ["POST", "GET"])
 def entry_page():
     # access form data
-    '''
+
     title = request.form.get('title')
     content = request.form.get('content')
     media = request.form.get('media')
@@ -28,14 +28,14 @@ def entry_page():
 
     conn = get_db()
     cur = conn.cursor()
-    cur.execute(''''''
+    cur.execute('''
         INSERT INTO diary_entries
         (title, contents, media, author, diary_id)
         VALUES('{}', '{}', '{}', '{}', '{}')
-    ''''''.format(title, content, media, author, 1))
+    '''.format(title, content, media, author, 1))
     conn.commit()
     
-    '''
+    
 
     return render_template('newentry.html')
 
