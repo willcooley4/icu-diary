@@ -37,11 +37,18 @@ def create_app(test_config=None):
     from diary import home
     app.register_blueprint(home.bp)
 
+
     from diary import newentry
     app.register_blueprint(newentry.bp)
 
     from diary import newdiary
     app.register_blueprint(newdiary.bp)
+
+    from diary import invite
+    app.register_blueprint(invite.bp)
+
+    from diary.newentry import entry_page
+
 
 
     ''''
