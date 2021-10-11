@@ -1,0 +1,1 @@
+CREATE DATABASE icu_diary;
