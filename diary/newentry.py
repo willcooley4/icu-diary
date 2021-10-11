@@ -12,7 +12,7 @@ bp = Blueprint('entry_page', __name__)  # NOTE: url_prefix?
 # allows user to make a new diary submission
 # diary entry page for doctor and contributors
 # allows for standard, templated, or media submissions
-@bp.route('/entry_page/', methods = ["POST", "GET"])
+@bp.route('/entry_page', methods = ["POST", "GET"])
 def entry_page():
     # access form data
     if request.method == 'POST':
