@@ -16,10 +16,6 @@ def new_diary():
     if 'username' not in session:
         return redirect('/auth/login')
 
-    context = {'e': 0, 'message': ''}
-
-    if request.method == 'POST':
-        context = {'e': 1, 'message': 'Diary Created'}
-        return render_template('newdiary.hmtl', **context)
-        
-    return render_template('newdiary.html', **context)
+    
+    
+    return render_template('newdiary.html')
