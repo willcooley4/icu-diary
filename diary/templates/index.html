@@ -14,45 +14,32 @@
   <body>
 
 <main>
-  <h1 class="visually-hidden">Headers examples</h1>
 
+  <!-- Begin Header -->
   <header class="p-3 mb-3 border-bottom">
     <div class="container">
       <div class="d-flex flex-wrap align-items-center justify-content-center justify-content-lg-start">
         <a href="/" class="d-flex align-items-center mb-3 mb-md-0 me-md-auto text-dark text-decoration-none">
-          <!-- <img class="mb-4" src="../../static/images/book.svg" alt="" width="50" height="50"> 48 X 38 -->
           <svg xmlns="http://www.w3.org/2000/svg" width="48" height="38" fill="currentColor" class="bi bi-book" viewBox="0 0 16 16">
             <path d="M1 2.828c.885-.37 2.154-.769 3.388-.893 1.33-.134 2.458.063 3.112.752v9.746c-.935-.53-2.12-.603-3.213-.493-1.18.12-2.37.461-3.287.811V2.828zm7.5-.141c.654-.689 1.782-.886 3.112-.752 1.234.124 2.503.523 3.388.893v9.923c-.918-.35-2.107-.692-3.287-.81-1.094-.111-2.278-.039-3.213.492V2.687zM8 1.783C7.015.936 5.587.81 4.287.94c-1.514.153-3.042.672-3.994 1.105A.5.5 0 0 0 0 2.5v11a.5.5 0 0 0 .707.455c.882-.4 2.303-.881 3.68-1.02 1.409-.142 2.59.087 3.223.877a.5.5 0 0 0 .78 0c.633-.79 1.814-1.019 3.222-.877 1.378.139 2.8.62 3.681 1.02A.5.5 0 0 0 16 13.5v-11a.5.5 0 0 0-.293-.455c-.952-.433-2.48-.952-3.994-1.105C10.413.809 8.985.936 8 1.783z"/>
           </svg>
           <span class="fs-4">ICU Diary</span>
         </a>
 
-        <ul class="nav col-12 col-lg-auto me-lg-auto mb-2 justify-content-center mb-md-0">
-          <li><a href="#" class="nav-link px-2 link-secondary">Overview</a></li>
-          <li><a href="#" class="nav-link px-2 link-dark">Inventory</a></li>
-          <li><a href="#" class="nav-link px-2 link-dark">Customers</a></li>
-          <li><a href="#" class="nav-link px-2 link-dark">Products</a></li>
-        </ul>
-
-        <form class="col-12 col-lg-auto mb-3 mb-lg-0 me-lg-3">
-          <input type="search" class="form-control" placeholder="Search..." aria-label="Search">
-        </form>
-
         <div class="dropdown text-end">
           <a href="#" class="d-block link-dark text-decoration-none dropdown-toggle" id="dropdownUser1" data-bs-toggle="dropdown" aria-expanded="false">
-            <img src="https://github.com/mdo.png" alt="mdo" width="32" height="32" class="rounded-circle">
+            <img src="../static/images/default_profile.jpg" alt="mdo" width="32" height="32" class="rounded-circle">
           </a>
           <ul class="dropdown-menu text-small" aria-labelledby="dropdownUser1">
-            <li><a class="dropdown-item" href="#">New project...</a></li>
-            <li><a class="dropdown-item" href="#">Settings</a></li>
-            <li><a class="dropdown-item" href="#">Profile</a></li>
+            <li><a class="dropdown-item" href="/auth/manage">Profile Settings</a></li>
             <li><hr class="dropdown-divider"></li>
-            <li><a class="dropdown-item" href="#">Sign out</a></li>
+            <li><a class="dropdown-item" href="/auth/logout">Sign out</a></li>
           </ul>
         </div>
       </div>
     </div>
   </header>
+  <!-- End Header -->
 
   <div class="b-example-divider"></div>
   <br/>
@@ -60,21 +47,23 @@
     <div class="col-md-6">
       <div class="h-100 p-5 text-white bg-dark rounded-3">
         <h2>View Diary</h2>
-        <p>Swap the background-color utility and add a `.text-*` color utility to mix up the jumbotron look. Then, mix and match with additional component themes and more.</p>
-        <button class="btn btn-outline-light" type="button">Example button</button>
+        <p>Browse through posts in chronological order and download for offline reading.</p>
+        <form action="/diary_viewing">
+          <button class="btn btn-outline-light" type="submit">View Now</button>
+        </form>
       </div>
     </div>
     <div class="col-md-6">
       <div class="h-100 p-5 bg-light border rounded-3">
         <h2>Make Contribution</h2>
-        <p>Or, keep it light and add a border for some added definition to the boundaries of your content. Be sure to look under the hood at the source HTML here as we've adjusted the alignment and sizing of both column's content for equal-height.</p>
-        <button class="btn btn-outline-secondary" type="button">Example button</button>
+        <p>Record a visit, give a status report, or just leave a nice note.</p>
+        <form action="/entry_page"><button class="btn btn-outline-secondary" type="submit">Write Now</button></form>
       </div>
     </div>
   </div>
 </main>
 
-<script src="../assets/dist/js/bootstrap.bundle.min.js"></script>
+<script src="../static/js/bootstrap.bundle.min.js"></script>
     
   </body>
 </html>

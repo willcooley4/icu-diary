@@ -14,45 +14,82 @@
   </head>
   <body>
 
+  <!-- Begin Header -->
+  <header class="p-3 mb-3 border-bottom">
+    <div class="container">
+      <div class="d-flex flex-wrap align-items-center justify-content-center justify-content-lg-start">
+        <a href="/" class="d-flex align-items-center mb-3 mb-md-0 me-md-auto text-dark text-decoration-none">
+          <svg xmlns="http://www.w3.org/2000/svg" width="48" height="38" fill="currentColor" class="bi bi-book" viewBox="0 0 16 16">
+            <path d="M1 2.828c.885-.37 2.154-.769 3.388-.893 1.33-.134 2.458.063 3.112.752v9.746c-.935-.53-2.12-.603-3.213-.493-1.18.12-2.37.461-3.287.811V2.828zm7.5-.141c.654-.689 1.782-.886 3.112-.752 1.234.124 2.503.523 3.388.893v9.923c-.918-.35-2.107-.692-3.287-.81-1.094-.111-2.278-.039-3.213.492V2.687zM8 1.783C7.015.936 5.587.81 4.287.94c-1.514.153-3.042.672-3.994 1.105A.5.5 0 0 0 0 2.5v11a.5.5 0 0 0 .707.455c.882-.4 2.303-.881 3.68-1.02 1.409-.142 2.59.087 3.223.877a.5.5 0 0 0 .78 0c.633-.79 1.814-1.019 3.222-.877 1.378.139 2.8.62 3.681 1.02A.5.5 0 0 0 16 13.5v-11a.5.5 0 0 0-.293-.455c-.952-.433-2.48-.952-3.994-1.105C10.413.809 8.985.936 8 1.783z"/>
+          </svg>
+          <span class="fs-4">ICU Diary</span>
+        </a>
+
+        <div class="dropdown text-end">
+          <a href="#" class="d-block link-dark text-decoration-none dropdown-toggle" id="dropdownUser1" data-bs-toggle="dropdown" aria-expanded="false">
+            <img src="../static/images/default_profile.jpg" alt="mdo" width="32" height="32" class="rounded-circle">
+          </a>
+          <ul class="dropdown-menu text-small" aria-labelledby="dropdownUser1">
+            <li><a class="dropdown-item" href="/auth/manage">Profile Settings</a></li>
+            <li><hr class="dropdown-divider"></li>
+            <li><a class="dropdown-item" href="/auth/logout">Sign out</a></li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </header>
+  <!-- End Header -->
+
 <div class="b-example-divider"></div>
 
 <div class="d-flex gap-5 justify-content-center">
-    <div class="container">
-        <div class="row">
-            <div class="col">
-                Invite friends!
+    <div class="container my-0">
+        <div class="row my-0">
+            <div class="col my-0">
+              <br>
+                <form action="invite" method="post" enctype="multipart/form-data">
+                  <!-- TODO: use site's logo here -->
+                  <h1 class="h3 mb-3 fw-normal">Invite Friends</h1>
+                  <br><br>
+                  <div class="form-floating">
+                      <input type="text" class="form-control" id="emailInput" placeholder="john@example.com" name="email">
+                      <label for="floatingInput">Email Address</label>
+                  </div>
+                  <button class="w-100 btn btn-lg btn-primary" type="submit">Invite</button>
+                </form>
               </div>
-          <div class="col">
-              Manage join requests.
+          <div class="col my-0">
+            <br>
+            <h1 class="h3 mb-3 fw-normal">Manage Requests</h1>
             <div class="list-group mx-0">
                 <a href="#" class="list-group-item list-group-item-action d-flex gap-3 py-3" aria-current="true">
-                  <img src="https://github.com/twbs.png" alt="twbs" width="32" height="32" class="rounded-circle flex-shrink-0">
+                  <img src="../static/images/default_profile.jpg" alt="twbs" width="32" height="32" class="rounded-circle flex-shrink-0">
                   <div class="d-flex gap-2 w-100 justify-content-between">
                     <div>
-                      <h6 class="mb-0">Family Member</h6>
-                      <p class="mb-0 opacity-75">Some placeholder content in a paragraph.</p>
+                      <h6 class="mb-0">Mother</h6>
+                      <p class="mb-0 opacity-75">Message describing why they requested access to this journal.</p>
                     </div>
-                    <small class="opacity-50 text-nowrap">now</small>
+                    <small class="opacity-50 text-nowrap">4 hours ago</small>
                   </div>
                 </a>
                 <a href="#" class="list-group-item list-group-item-action d-flex gap-3 py-3" aria-current="true">
-                  <img src="https://github.com/twbs.png" alt="twbs" width="32" height="32" class="rounded-circle flex-shrink-0">
+                  <img src="../static/images/default_profile.jpg" alt="twbs" width="32" height="32" class="rounded-circle flex-shrink-0">
                   <div class="d-flex gap-2 w-100 justify-content-between">
                     <div>
-                      <h6 class="mb-0"></h6>
-                      <p class="mb-0 opacity-75">Some placeholder content in a paragraph that goes a little longer so it wraps to a new line.</p>
+                      <h6 class="mb-0">Close Friend</h6>
+                      <p class="mb-0 opacity-75">Message describing why they requested access to this journal.</p>
                     </div>
-                    <small class="opacity-50 text-nowrap">3d</small>
+                    <small class="opacity-50 text-nowrap">6 hours ago</small>
                   </div>
                 </a>
                 <a href="#" class="list-group-item list-group-item-action d-flex gap-3 py-3" aria-current="true">
-                  <img src="https://github.com/twbs.png" alt="twbs" width="32" height="32" class="rounded-circle flex-shrink-0">
+                  <img src="../static/images/default_profile.jpg" alt="twbs" width="32" height="32" class="rounded-circle flex-shrink-0">
                   <div class="d-flex gap-2 w-100 justify-content-between">
                     <div>
-                      <h6 class="mb-0">Third heading</h6>
-                      <p class="mb-0 opacity-75">Some placeholder content in a paragraph.</p>
+                      <h6 class="mb-0">Spouse</h6>
+                      <p class="mb-0 opacity-75">Message describing why they requested access to this journal.</p>
                     </div>
-                    <small class="opacity-50 text-nowrap">1w</small>
+                    <small class="opacity-50 text-nowrap">1 day ago</small>
                   </div>
                 </a>
               </div>
@@ -60,7 +97,7 @@
         </div>
 </div>
 
-    <script src="../assets/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="../static/js/bootstrap.bundle.min.js"></script>
 
       
   </body>
