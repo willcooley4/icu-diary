@@ -1,0 +1,45 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <!-- Bootstrap CSS -->
+    <link href="../../static/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Custom style generic form entry -->
+    <link href="../static/css/genericform.css" rel="stylesheet">
+    <title>diary sharing page</title>
+  </head>
+  <body class="text-center">
+
+    
+
+    <main class="form-generic">
+      <h1>Diary Sharing</h1>
+      <br>
+      <form action="diarysharing" method="post" enctype="multipart/form-data">
+
+        <div class="form-group">
+            <label for="email">Email address</label>
+            <input type="email" class="form-control" id="email" aria-describedby="emailHelp" placeholder="Enter email">
+            <small id="emailHelp" class="form-text text-muted">Please enter the email you want to send diary to</small>
+        </div>
+
+        <div class="form-group">
+            <label for="cell">Please enter the number you want to send the diary to</label>
+            <input type="text" class="form-control" id="cell" placeholder="Enter phone number" name="cell">
+        </div>
+
+        <div class="form-group">
+            <label for="diary">Please enter diary name</label>
+            <input type="text" class="form-control" id="diary" placeholder="Diary Name" name="diary">
+        </div>
+
+        
+
+      </form>
+    </main>
+  </body>
+
+</html>

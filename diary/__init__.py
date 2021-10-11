@@ -47,6 +47,9 @@ def create_app(test_config=None):
     from diary import invite
     app.register_blueprint(invite.bp)
 
+    from diary import diarysharing
+    app.register_blueprint(diarysharing.bp)
+
     from diary.newentry import entry_page
 
 
