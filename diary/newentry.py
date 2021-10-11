@@ -30,6 +30,8 @@ def entry_page():
             VALUES('{}', '{}', '{}', '{}', '{}')
         '''.format(title, content, media, author, 1))
         conn.commit()
+        return redirect('/entry_page/')
+
 
     return render_template('newentry.html')
 
