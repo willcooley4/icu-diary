@@ -27,7 +27,7 @@ def init_db():
     db.autocommit = True  # NOTE: we may want to eliminate this line if the need arises
 
     with db.cursor() as cursor:
-        cursor.execute(current_app.open_resource('schema_create.sql').read())
+        cursor.execute(current_app.open_resource('schema.sql').read())
 
     # with current_app.open_resource('schema.sql') as f:
     #     db.execute(f.read().decode('utf8'))

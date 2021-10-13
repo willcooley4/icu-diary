@@ -1,5 +1,3 @@
-CREATE DATABASE icu_diary;
-
 DROP TABLE IF EXISTS users;
 DROP TABLE IF EXISTS diary_entries;
 DROP TABLE IF EXISTS diaries;
