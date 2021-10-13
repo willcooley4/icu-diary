@@ -3,8 +3,13 @@ from flask import Flask, session
 
 from diary.newentry import entry_page
 
+from db import init_db
+
+# init_db()
 
 def create_app(test_config=None):
+
+    init_db()
     # create and configure the app
     app = Flask(__name__, instance_relative_config=True)
     app.config.from_mapping(

@@ -1,7 +1,7 @@
 from diary import create_app
-from diary.db import init_db
+# from diary.db import init_db
 
-init_db()
+# init_db()
 
 app = create_app()
 
