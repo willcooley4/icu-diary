@@ -6,7 +6,7 @@ This can be browsed for testing, but some behind the scenes functionality in alp
 
 
 to run locally: <br><br>
-Running this project locally <b>requires postgresql 14 to be installed and configured.</b> We both found this process rather time consuming, but if you wish to test this way, a few small changes must be made to the code.  <br>
+Running this project locally <b>requires postgresql 14 to be installed and running.</b> We both found this process rather time consuming, but if you wish to test this way, a few small changes must be made to the code.  <br>
 1) Replace the database URI in diary/__init__.py (line 17) with the version that is commented out. If you modified the default username and password for your local instance of postgresql, modify this string to the following format: <br> postgres://&lt;username&gt;:&lt;password&gt;@127.0.0.1:5432/icu_diary (without the angle brackets) <br>
 2) Enter your local postgresql with psql -U postgres (install psql for this to run) <br>
 3) Run: CREATE DATABASE icu_diary; <br>
