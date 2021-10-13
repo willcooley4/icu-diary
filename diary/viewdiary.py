@@ -12,4 +12,6 @@ bp = Blueprint('view_diary', __name__)  # NOTE: url_prefix?
 # posts sorted chronologically
 @bp.route('/view_diary/', methods = ["POST", "GET"])
 def view_diary():
+    if 'username' not in session:
+        return redirect('/auth/login')
     return render_template('viewdiary.html')

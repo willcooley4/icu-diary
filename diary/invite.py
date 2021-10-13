@@ -9,4 +9,6 @@ bp = Blueprint('invite', __name__)  # NOTE: url_prefix?
 
 @bp.route('/invite', methods=('GET', 'POST'))
 def invite():
+    if 'username' not in session:
+        return redirect('/auth/login')
     return render_template('invite.html')

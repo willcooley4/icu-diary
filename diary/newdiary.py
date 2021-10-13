@@ -13,4 +13,6 @@ bp = Blueprint('new_diary', __name__)  # NOTE: url_prefix?
 # input patient name, diary name, and emergency contact email
 @bp.route('/new_diary/', methods = ["POST", "GET"])
 def new_diary():
+    if 'username' not in session:
+        return redirect('/auth/login')
     return render_template('newdiary.html')

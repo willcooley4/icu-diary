@@ -15,6 +15,8 @@ bp = Blueprint('entry_page', __name__)  # NOTE: url_prefix?
 @bp.route('/entry_page/', methods = ["POST", "GET"])
 def entry_page():
     # access form data
+    if 'username' not in session:
+        return redirect('/auth/login')
     if request.method == 'POST':
         title = request.form.get('title')
         content = request.form.get('content')
