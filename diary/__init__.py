@@ -9,7 +9,6 @@ from diary.db import init_db
 
 def create_app(test_config=None):
 
-    init_db()
     # create and configure the app
     app = Flask(__name__, instance_relative_config=True)
     app.config.from_mapping(
@@ -18,6 +17,9 @@ def create_app(test_config=None):
         # DATABASE="postgres://postgres:password@127.0.0.1:5432/icu_diary",
         # DATABASE=os.path.join(app.instance_path, 'diary.'),
     )
+
+    with app.app_context():
+    	init_db()
     
 
     if test_config is None:
