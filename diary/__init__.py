@@ -3,7 +3,7 @@ from flask import Flask, session
 
 from diary.newentry import entry_page
 
-from db import init_db
+from diary.db import init_db
 
 # init_db()
 
