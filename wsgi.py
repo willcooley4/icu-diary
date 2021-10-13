@@ -1,4 +1,4 @@
-from module import create_app_instance
+from diary import create_app_instance
 
 
 app = create_app()
