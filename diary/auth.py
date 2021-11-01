@@ -74,6 +74,10 @@ def signup():
         conn = get_db()
         cur = conn.cursor()
 
+        if ' ' in password or ' ' in password2 or password == '' or password2 == '':
+            context = {'e': 1, 'message': 'Invalid password.'}
+            return render_template('auth/signup.html', **context)
+
         # check if both password entries match
         if password != password2:
             context = {'e': 1, 'message': 'Passwords do not match.'}
