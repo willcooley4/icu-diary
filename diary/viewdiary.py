@@ -14,4 +14,4 @@ bp = Blueprint('view_diary', __name__)  # NOTE: url_prefix?
 def view_diary():
     if 'username' not in session:
         return redirect('/auth/login')
-    return render_template('navbar.html')
+    return render_template('viewdiary.html')
