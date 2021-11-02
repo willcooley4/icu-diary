@@ -6,13 +6,13 @@ from diary.db import get_db
 import diary
 import flask
 
-bp = Blueprint('new_diary', __name__)  # NOTE: url_prefix?
+bp = Blueprint('newdiary', __name__)  # NOTE: url_prefix?
 
 
 # allows nurse to make a new diary for patient
 # input patient name, diary name, and emergency contact email
-@bp.route('/new_diary/', methods = ["POST", "GET"])
-def new_diary():
+@bp.route('/newdiary', methods = ["POST", "GET"])
+def newdiary():
     if 'username' not in session:
         return redirect('/auth/login')
 

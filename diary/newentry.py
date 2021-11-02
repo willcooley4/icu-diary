@@ -6,14 +6,14 @@ from diary.db import get_db
 import diary
 import flask
 
-bp = Blueprint('entry_page', __name__)  # NOTE: url_prefix?
+bp = Blueprint('newentry', __name__)  # NOTE: url_prefix?
 
 
 # allows user to make a new diary submission
 # diary entry page for doctor and contributors
 # allows for standard, templated, or media submissions
-@bp.route('/entry_page/', methods = ["POST", "GET"])
-def entry_page():
+@bp.route('/newentry', methods = ["POST", "GET"])
+def newentry():
     # access form data
     if 'username' not in session:
         return redirect('/auth/login')
