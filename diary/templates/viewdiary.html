@@ -49,20 +49,17 @@
 
     <br><br>
 
+    {% for entry in entries %}
 
     <div class="container">
-        <p>From: Susan          12:34pm</p>
-        <p>Hope you're feeling better soon!</p>
+        <p>From: {{ entry['author'] }}  {{ entry['created'] }}</p>
+        <h6>{{ entry['title'] }}</h6>
+        <p>{{ entry['contents'] }}</p>
     </div>
 
     <br><br><hr><br><br>
 
-    <div class="container">
-        <p>From: Dr. Valley         11:03am</p>
-        <p>The blood work from earlier today came back normal. We're still waiting on the ekg results, but we will notify once we have them</p>
-    </div>
-
-    <br><br><hr>
+    {% endfor %}
 
     
   </body>

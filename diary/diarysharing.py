@@ -5,6 +5,7 @@ from flask import (
 from diary.db import get_db
 import diary
 import flask
+import smtplib, ssl
 
 bp = Blueprint('diary_sharing', __name__)  # NOTE: url_prefix?
 
@@ -15,4 +16,35 @@ bp = Blueprint('diary_sharing', __name__)  # NOTE: url_prefix?
 def diary_sharing():
     if 'username' not in session:
         return redirect('/auth/login')
+    if request.method == 'POST':
+        # Access form data
+        email = request.form.get('email')
+        diary_name = request.form.get('diary')
+        print(email, diary_name)
+
+        port = 465  # For SSL
+        password = 'WNhZu6KawLL2i6r'
+
+        # Create a secure SSL context
+        context = ssl.create_default_context()
+
+        with smtplib.SMTP_SSL("smtp.gmail.com", port, context=context) as server:
+            server.login("icudiary5@gmail.com", password)
+
+            sender_email = "icudiary5@gmail.com"
+            receiver_email = email
+            message = """\
+            Subject: Hi there
+
+            This message is sent from Python.
+            {} has requested access to the diary '{}'.
+            """.format(session['username'], diary_name)
+
+            server.sendmail(sender_email, receiver_email, message)
+
     return render_template('diarysharing.html')
+
+
+
+
+

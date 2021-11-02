@@ -11,4 +11,6 @@ bp = Blueprint('invite', __name__)  # NOTE: url_prefix?
 def invite():
     if 'username' not in session:
         return redirect('/auth/login')
+
+
     return render_template('invite.html')
