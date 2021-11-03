@@ -1,0 +1,53 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <title>sign up</title>
+
+    <!-- Bootstrap core CSS -->
+    <link href="../../static/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Custom styles for this template -->
+    <link href="../../static/css/signin.css" rel="stylesheet">
+  </head>
+  <body class="text-center">
+    <main class="form-signin">
+        {% if e == 1 %}
+        <div class="alert alert-warning" role="alert">
+            {{ message }}
+        </div>
+        {% endif %}
+      <form action="admin" method="post" enctype="multipart/form-data">
+        <!-- TODO: use site's logo here -->
+        <img class="mb-4" src="../../static/images/bandaid.svg" alt="" width="72" height="57">
+        <h1 class="h3 mb-3 fw-normal">Register Physician Account</h1>
+
+        <div class="form-floating">
+          <input type="text" class="form-control" id="floatingInput" placeholder="Username" name="username">
+          <label for="floatingInput">Username</label>
+        </div>
+        <div class="form-floating">
+            <input type="text" class="form-control" id="floatingInput" placeholder="John Doe" name="fullname">
+            <label for="floatingInput">Full Name</label>
+          </div>
+        <div class="form-floating">
+            <input type="text" class="form-control" id="emailInput" placeholder="john@example.com" name="email">
+            <label for="floatingInput">Email Address</label>
+        </div>
+        <div class="form-floating">
+          <input type="password" class="form-control" id="floatingPassword" placeholder="Password" name="password">
+          <label for="floatingPassword">Password</label>
+        </div>
+        <div class="form-floating">
+            <input type="password" class="form-control" id="floatingPassword" placeholder="Password" name="password2">
+            <label for="floatingPassword">Repeat Password</label>
+          </div>
+        <button class="w-100 btn btn-lg btn-primary" type="submit">Sign up</button>
+      </form>
+
+      <hr>
+      <br>
+      Already have an account? <a href="/auth/login">Log in here.</a>
+    </main>
+
+  </body>
+</html>

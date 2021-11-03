@@ -4,6 +4,8 @@ import psycopg2.extras
 import click
 from flask import current_app, g
 from flask.cli import with_appcontext
+import uuid
+import hashlib
 
 
 def get_db():
@@ -29,8 +31,27 @@ def init_db():
     # with db.cursor() as cursor:
     #     cursor.execute(current_app.open_resource('test_diary.sql').read())
 
-    with current_app.open_resource('schema.sql') as f:
-        db.execute(f.read().decode('utf8'))
+    # with current_app.open_resource('schema.sql') as f:
+    #     db.execute(f.read().decode('utf8'))
+
+    with db.cursor() as cursor:
+        cursor.execute(current_app.open_resource('schema.sql').read())
+
+    # Create admin account
+
+    salt = uuid.uuid4().hex
+    hash_obj = hashlib.new('sha512')
+    password_salted = salt + 'admin'  # TODO: Create secure password for administrator
+    hash_obj.update(password_salted.encode('utf-8'))
+    password_hash = hash_obj.hexdigest()
+    password_db_string = "$".join(['sha512', salt, password_hash])
+
+    # Create user account
+    db.cursor().execute('''
+        INSERT INTO users(username, full_name, password, profile_pic, user_type, email)
+        VALUES ('admin', 'System Administrator', '{}', '{}', 'admin', 'admin@icu.com')
+    '''.format(password_db_string, 'lala.jpg'))
+    db.commit()
 
 
 @click.command('init-db')

@@ -1,13 +1,14 @@
-DROP TABLE IF EXISTS users;
 DROP TABLE IF EXISTS diary_entries;
-DROP TABLE IF EXISTS diaries;
 DROP TABLE IF EXISTS contributors;
+DROP TABLE IF EXISTS diaries;
+DROP TABLE IF EXISTS users;
 
 CREATE TABLE users (
     username TEXT PRIMARY KEY,
     user_type TEXT NOT NULL,
     full_name TEXT NOT NULL,
     password TEXT NOT NULL,
+    email TEXT NOT NULL,
     profile_pic TEXT NOT NULL
 );
 
