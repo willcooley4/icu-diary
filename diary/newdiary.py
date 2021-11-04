@@ -18,4 +18,4 @@ def new_diary():
 
     
     
-    return render_template('newdiary.html')
+    return render_template('navbar.html')
