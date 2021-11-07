@@ -51,13 +51,22 @@
 
     {% for entry in entries %}
 
-    <div class="container">
+    <!--
+      <div class="container">
         <p>From: {{ entry['author'] }}  {{ entry['created'] }}</p>
         <h6>{{ entry['title'] }}</h6>
         <p>{{ entry['contents'] }}</p>
+      </div>
+      <br><br><hr><br><br>
+    -->
+    
+    <div class="card">
+      <div class="card-body">
+        <h5 class="card-title">{{ entry['title] }}</h5>
+        <h6 class="card-subtitle mb-2 text-muted">From: {{ entry['author'] }}  {{ entry['created'] }}</h6>
+        <p class="card-text">{{ entry['contents'] }}</p>
+      </div>
     </div>
-
-    <br><br><hr><br><br>
 
     {% endfor %}
 
