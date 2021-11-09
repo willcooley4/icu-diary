@@ -20,31 +20,30 @@ def diary_sharing():
         # Access form data
         email = request.form.get('email')
         diary_name = request.form.get('diary')
-        print(email, diary_name)
+        message = """\
+        Subject: Hi there
 
-        port = 465  # For SSL
-        password = 'WNhZu6KawLL2i6r'
+        This message is sent from Python.
+        {} has requested access to the diary '{}'.
+        """.format(session['username'], diary_name)
 
-        # Create a secure SSL context
-        context = ssl.create_default_context()
-
-        with smtplib.SMTP_SSL("smtp.gmail.com", port, context=context) as server:
-            server.login("icudiary5@gmail.com", password)
-
-            sender_email = "icudiary5@gmail.com"
-            receiver_email = email
-            message = """\
-            Subject: Hi there
-
-            This message is sent from Python.
-            {} has requested access to the diary '{}'.
-            """.format(session['username'], diary_name)
-
-            server.sendmail(sender_email, receiver_email, message)
+        send_email(email, message)
 
     return render_template('diarysharing.html')
 
 
+def send_email(recipient_email, message):
 
+    port = 465  # For SSL
+    password = 'WNhZu6KawLL2i6r'
+
+    # Create a secure SSL context
+    context = ssl.create_default_context()
+
+    with smtplib.SMTP_SSL("smtp.gmail.com", port, context=context) as server:
+        server.login("icudiary5@gmail.com", password)
+        sender_email = "icudiary5@gmail.com"
+
+        server.sendmail(sender_email, recipient_email, message)
 
 

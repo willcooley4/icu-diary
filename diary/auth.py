@@ -64,9 +64,14 @@ def signup():
         return redirect('/')
     if request.method == 'POST':
 
-        # begin register        
-        username = register_user(request, 'contributor')
-        # end register
+        # get form contents
+        username = request.form.get('username')
+        password = request.form.get('password')
+        password2 = request.form.get('password2')
+        fullname = request.form.get('fullname')
+        email = request.form.get('email')
+
+        register_user(username, password, password2, fullname, email, 'contributor')
 
         # Start user session
         session['username'] = username
@@ -101,18 +106,20 @@ def home():
         return 'Access Denied. Must be application administrator to view this page', 401
 
     if request.method == 'POST':
-        username = register_user(request, 'physician')
+        # get form contents
+        username = request.form.get('username')
+        password = request.form.get('password')
+        password2 = request.form.get('password2')
+        fullname = request.form.get('fullname')
+        email = request.form.get('email')
+
+        register_user(username, password, password2, fullname, email, 'physician')
         context = {'e': 1, 'message': 'Successfully registered ' + username + '.'}
     else:
         context = {'e': 0, 'message': ''}
     return render_template('auth/admin.html', **context)
 
-def register_user(request, account_type):
-    username = request.form.get('username')
-    password = request.form.get('password')
-    password2 = request.form.get('password2')
-    fullname = request.form.get('fullname')
-    email = request.form.get('email')
+def register_user(username, password, password2, fullname, email, account_type):
 
     conn = get_db()
     cur = conn.cursor()
@@ -150,5 +157,3 @@ def register_user(request, account_type):
         VALUES ('{}', '{}', '{}', '{}', '{}', '{}')
     '''.format(username, fullname, password_db_string, 'lala.jpg', email, account_type))
     conn.commit()
-
-    return username
