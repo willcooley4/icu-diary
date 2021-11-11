@@ -19,6 +19,10 @@ def new_diary():
     # TODO: verify user is doctor or admin
 
     if request.method == 'POST':
+        # retrieve database connection
+        conn = get_db()
+        cur = conn.cursor()
+
         # get form contents
         patient_name = request.form.get('patient_name')
         patient_email = request.form.get('patient_email')
@@ -26,15 +30,12 @@ def new_diary():
         contact_email = request.form.get('contact_email')
         diary_name = request.form.get('diary_name')
 
-        # TODO: register patient + email
-        print(patient_name.replace(" ", "").lower() + '_' + token_hex(4))
-        print(patient_name.replace(" ", "").lower())
-        print(patient_name.replace(" ", ""))
-        print(patient_name)
+
+        # register patient + email
         patient_username = patient_name.replace(" ", "").lower() + '_' + token_hex(4)
-        patient_password = token_hex(16)
+        patient_password = token_hex(8)
         register_user(patient_username, patient_password, patient_password, patient_name, patient_email, 'patient')
-        patient_message = """\
+        message = """\
         Subject: Hi there
 
         This message is sent from Python.
@@ -42,8 +43,36 @@ def new_diary():
         Username: {}
         Password: {}
         """.format(patient_name, diary_name, patient_username, patient_password)
-        send_email(patient_email, patient_message)
-        # TODO: register primary contributor + email
-        # TODO: create diary
+        send_email(patient_email, message)
+
+        # create diary
+        cur.execute('''
+        INSERT INTO diaries(name, patient)
+        VALUES ('{}', '{}') RETURNING id
+        '''.format(diary_name, patient_username))
+        diary_id = cur.fetchone()['id']
+
+        #  register primary contributor + email
+        # TODO: include contributor relation to diary
+        contact_username = contact_name.replace(" ", "").lower() + '_' + token_hex(4)
+        contact_password = token_hex(8)
+        register_user(contact_username, contact_password, contact_password, contact_name, contact_email, 'primary_contributor')
+        message = """\
+        Subject: Hi there
+
+        This message is sent from Python.
+        {} has been registered as the primary contributor for diary '{}'.
+        This is the ICU diary for patient: {}
+        Username: {}
+        Password: {}
+        """.format(contact_name, diary_name, contact_name, patient_name, contact_password)
+
+        cur.execute('''
+        INSERT INTO contributors(contributor, diary_id, primary_contributor)
+        VALUES ('{}', '{}', TRUE)
+        '''.format(contact_username, diary_id))
+        conn.commit()
+        send_email(contact_email, message)
+
     
     return render_template('newdiary.html')
