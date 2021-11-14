@@ -14,13 +14,13 @@ def create_app(test_config=None):
     app = Flask(__name__, instance_relative_config=True)
     app.config.from_mapping(
         SECRET_KEY='dev',
-	# DATABASE="postgres://alyuctkwauihmb:8424f30704bd4773e151842d1fc846be14327c70e098979e92f6ad4fb8b6b6a5@ec2-34-205-14-168.compute-1.amazonaws.com:5432/d68vsu4crjnc9n",
-    DATABASE="postgres://postgres:password@127.0.0.1:5432/icu_diary",
+	DATABASE="postgres://alyuctkwauihmb:8424f30704bd4773e151842d1fc846be14327c70e098979e92f6ad4fb8b6b6a5@ec2-34-205-14-168.compute-1.amazonaws.com:5432/d68vsu4crjnc9n",
+    # DATABASE="postgres://postgres:password@127.0.0.1:5432/icu_diary",
 
     )
 
-    # with app.app_context():
-    #	init_db()
+    with app.app_context():
+        init_db()
     
 
     if test_config is None:
