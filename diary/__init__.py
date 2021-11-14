@@ -19,8 +19,8 @@ def create_app(test_config=None):
 
     )
 
-    with app.app_context():
-        init_db()
+    # with app.app_context():
+    #   init_db()
     
 
     if test_config is None:
