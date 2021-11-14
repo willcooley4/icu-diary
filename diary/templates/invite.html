@@ -62,36 +62,18 @@
             <br>
             <h1 class="h3 mb-3 fw-normal">Manage Requests</h1>
             <div class="list-group mx-0">
+                {% for user in users %}
                 <a href="#" class="list-group-item list-group-item-action d-flex gap-3 py-3" aria-current="true">
                   <img src="../static/images/default_profile.jpg" alt="twbs" width="32" height="32" class="rounded-circle flex-shrink-0">
                   <div class="d-flex gap-2 w-100 justify-content-between">
                     <div>
-                      <h6 class="mb-0">Mother</h6>
-                      <p class="mb-0 opacity-75">Message describing why they requested access to this journal.</p>
+                      <h6 class="mb-0">{{ user.contributor }}</h6>
+                      <p class="mb-0 opacity-75">{{ user.message }}</p>
                     </div>
-                    <small class="opacity-50 text-nowrap">4 hours ago</small>
+                    <small class="opacity-50 text-nowrap">Timestamp</small>
                   </div>
                 </a>
-                <a href="#" class="list-group-item list-group-item-action d-flex gap-3 py-3" aria-current="true">
-                  <img src="../static/images/default_profile.jpg" alt="twbs" width="32" height="32" class="rounded-circle flex-shrink-0">
-                  <div class="d-flex gap-2 w-100 justify-content-between">
-                    <div>
-                      <h6 class="mb-0">Close Friend</h6>
-                      <p class="mb-0 opacity-75">Message describing why they requested access to this journal.</p>
-                    </div>
-                    <small class="opacity-50 text-nowrap">6 hours ago</small>
-                  </div>
-                </a>
-                <a href="#" class="list-group-item list-group-item-action d-flex gap-3 py-3" aria-current="true">
-                  <img src="../static/images/default_profile.jpg" alt="twbs" width="32" height="32" class="rounded-circle flex-shrink-0">
-                  <div class="d-flex gap-2 w-100 justify-content-between">
-                    <div>
-                      <h6 class="mb-0">Spouse</h6>
-                      <p class="mb-0 opacity-75">Message describing why they requested access to this journal.</p>
-                    </div>
-                    <small class="opacity-50 text-nowrap">1 day ago</small>
-                  </div>
-                </a>
+                {% endfor %}
               </div>
           </div>
         </div>

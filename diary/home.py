@@ -24,10 +24,11 @@ def home():
     if request.method == 'POST':
         print('post worked :)')
         diary_id = request.form.get('diary_id')
+        message = request.form.get('message')
         cur.execute('''
-            INSERT INTO contributors(contributor, diary_id, approved, primary_contributor)
-            VALUES('{}', '{}', FALSE, FALSE)
-        '''.format(session['username'], diary_id))
+            INSERT INTO contributors(contributor, diary_id, approved, primary_contributor, message)
+            VALUES('{}', '{}', FALSE, FALSE, '{}')
+        '''.format(session['username'], diary_id, message))
         conn.commit()
 
     if user_type == 'contributor':

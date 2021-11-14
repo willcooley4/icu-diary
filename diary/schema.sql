@@ -35,6 +35,7 @@ CREATE TABLE contributors (
     diary_id INTEGER NOT NULL,
     approved BOOLEAN NOT NULL,
     primary_contributor BOOLEAN NOT NULL,
+    message TEXT,
     FOREIGN KEY(contributor) REFERENCES users(username),
     FOREIGN KEY(diary_id) REFERENCES diaries(id)
 );

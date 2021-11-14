@@ -15,13 +15,13 @@ def invite():
     
     # TODO: verify that user is primary contributor
 
+    # retrieve database connection
+    conn = get_db()
+    cur = conn.cursor()
+
     if request.method == 'POST':
         # Access form data
         email = request.form.get('email')
-
-        # retrieve database connection
-        conn = get_db()
-        cur = conn.cursor()
 
         cur.execute('''
             SELECT diary_id FROM contributors
@@ -44,6 +44,14 @@ def invite():
         """.format(session['username'], row['name'], diary_id)
         send_email(email, message)
 
+    cur.execute('''
+        SELECT * FROM contributors
+        WHERE diary_id = '{}' AND approved = FALSE
+    '''.format(1))
+    rows = cur.fetchall()
+    print(rows)
+
+    context = {'users': rows}
 
 
-    return render_template('invite.html')
+    return render_template('invite.html', **context)
