@@ -65,11 +65,11 @@ def new_diary():
         This is the ICU diary for patient: {}
         Username: {}
         Password: {}
-        """.format(contact_name, diary_name, contact_name, patient_name, contact_password)
+        """.format(contact_name, diary_name, patient_name, contact_username, contact_password)
 
         cur.execute('''
-        INSERT INTO contributors(contributor, diary_id, primary_contributor)
-        VALUES ('{}', '{}', TRUE)
+        INSERT INTO contributors(contributor, diary_id, primary_contributor, approved)
+        VALUES ('{}', '{}', TRUE, TRUE)
         '''.format(contact_username, diary_id))
         conn.commit()
         send_email(contact_email, message)

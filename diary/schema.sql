@@ -31,10 +31,10 @@ CREATE TABLE diary_entries (
 );
 
 CREATE TABLE contributors (
-    contributor TEXT NOT NULL,
+    contributor TEXT PRIMARY KEY,
     diary_id INTEGER NOT NULL,
+    approved BOOLEAN NOT NULL,
     primary_contributor BOOLEAN NOT NULL,
     FOREIGN KEY(contributor) REFERENCES users(username),
-    FOREIGN KEY(diary_id) REFERENCES diaries(id),
-    PRIMARY KEY (contributor, diary_id)
+    FOREIGN KEY(diary_id) REFERENCES diaries(id)
 );
