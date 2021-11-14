@@ -21,29 +21,50 @@ def invite():
 
     if request.method == 'POST':
         # Access form data
-        email = request.form.get('email')
+        print(request.form)
+        if 'email' in request.form:
+            email = request.form.get('email')
 
-        cur.execute('''
-            SELECT diary_id FROM contributors
-            WHERE contributor = '{}'
-        '''.format(session['username']))
-        diary_id = cur.fetchone()['diary_id']
-        cur.execute('''
-            SELECT * FROM diaries
-            WHERE id = '{}'
-        '''.format(diary_id))
-        row = cur.fetchone()
+            cur.execute('''
+                SELECT diary_id FROM contributors
+                WHERE contributor = '{}'
+            '''.format(session['username']))
+            diary_id = cur.fetchone()['diary_id']
+            cur.execute('''
+                SELECT * FROM diaries
+                WHERE id = '{}'
+            '''.format(diary_id))
+            row = cur.fetchone()
 
-        # TODO: use names, not usernames
-        message = """\
-        Subject: Hi there
+            # TODO: use names, not usernames
+            message = """\
+            Subject: Hi there
 
-        This message is sent from Python.
-        {} has invited you to contribute to {}'s diary.
-        Use diary_id {} to register after creating an account at: https://icu-diary-495.herokuapp.com/auth/signup
-        """.format(session['username'], row['name'], diary_id)
-        send_email(email, message)
+            This message is sent from Python.
+            {} has invited you to contribute to {}'s diary.
+            Use diary_id {} to register after creating an account at: https://icu-diary-495.herokuapp.com/auth/signup
+            """.format(session['username'], row['name'], diary_id)
+            send_email(email, message)
 
+        elif 'approve' in request.form:
+            user = request.form.get('approve')
+            cur.execute('''
+                UPDATE contributors
+                SET approved = TRUE
+                WHERE contributor = '{}'
+            '''.format(user))
+            conn.commit()
+        elif 'deny' in request.form:
+            user = request.form.get('deny')
+            cur.execute('''
+                DELETE FROM contributors
+                WHERE contributor = '{}'
+            '''.format(user))
+            conn.commit()
+        else:
+            return '400 Bad Request', 400
+
+    # TODO: select correct diary_id
     cur.execute('''
         SELECT * FROM contributors
         WHERE diary_id = '{}' AND approved = FALSE
@@ -53,5 +74,5 @@ def invite():
 
     context = {'users': rows}
 
-
+    # TODO: add closable info message when thing is submitted
     return render_template('invite.html', **context)

@@ -69,6 +69,14 @@
                     <div>
                       <h6 class="mb-0">{{ user.contributor }}</h6>
                       <p class="mb-0 opacity-75">{{ user.message }}</p>
+                      <form action="invite" method="post" enctype="multipart/form-data">
+                        <input type="hidden" id="approveInput" name="approve" value="{{ user.contributor }}">
+                        <button type="submit" class="btn btn-success">Approve</button>
+                      </form>
+                      <form action="invite" method="post" enctype="multipart/form-data">
+                        <input type="hidden" id="denyInput" name="deny" value="{{ user.contributor }}">
+                        <button type="submit" class="btn btn-danger">Deny</button>
+                      </form>  
                     </div>
                     <small class="opacity-50 text-nowrap">Timestamp</small>
                   </div>
