@@ -9,8 +9,8 @@ body {
 }
 
 .form-generic {
-    
-    max-width: 500px;
+    width: 200%;
+   
     padding: 15px;
     margin: auto;
     display: flex;
