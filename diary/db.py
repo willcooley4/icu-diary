@@ -49,7 +49,7 @@ def init_db():
     # Create user account
     db.cursor().execute('''
         INSERT INTO users(username, full_name, password, profile_pic, user_type, email)
-        VALUES ('admin', 'System Administrator', '{}', '{}', 'admin', 'admin@icu.com')
+        VALUES ('admin', 'System Administrator', '{}', '{}', 'admin', 'icudiary5@gmail.com')
     '''.format(password_db_string, 'lala.jpg'))
     db.commit()
 
