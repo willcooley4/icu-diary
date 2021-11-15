@@ -50,7 +50,7 @@ def entry_page():
         WHERE username = '{}'
     '''.format(author))
     conn.commit()
-    usertype = cur.fetchone()['User_type']
+    usertype = cur.fetchone()['user_type']
     if usertype == 'physician':
         context = {'e': 2, 'message' : ''}
         return render_template('newentry.html', **context)
