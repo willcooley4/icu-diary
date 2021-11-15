@@ -8,12 +8,12 @@
    <!-- Bootstrap CSS -->
    <link href="../../static/css/bootstrap.min.css" rel="stylesheet">
    <!-- Custom style generic form entry -->
-   <link href="../static/css/genericform.css" rel="stylesheet">
    
     <title>new diary</title>
   </head>
   
-  <body class="text-center">
+  <body class="">
+        <header>
         <!-- Beginning of navbar-->
         <nav class="navbar navbar-expand-lg navbar-light p-3 mbt-3 border-bottom" style="background-color: #e3f2fd;">
           <!-- Logo, redirect to home -->
@@ -51,7 +51,7 @@
           <ul class="navbar-nav">
             <li class="nav-item dropdown">
               <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                <img src="../static/images/default_profile.jpg" alt="mdo" width="32" height="32" class="rounded-circle">
+                <img src="../static/images/stock1.jpg" alt="mdo" width="32" height="32" class="rounded-circle">
               </a>
               <div class="dropdown-menu dropdown-align-right">
                 <a class="dropdown-item" href="/auth/manage">Profile Settings</a>
@@ -61,34 +61,39 @@
             </li>
           </ul>
         </nav>
+      </header>
         <!-- End of navbar-->
     <main class="form-signin">
-
-      <form action="/new_diary" method="post" enctype="multipart/form-data">
-        <h1 class="h3 mb-3 fw-normal">Create a New Diary</h1>
-        <div class="form-floating">
-          <input type="text" class="form-control" id="floatingInput" placeholder="Patient Name" name="patient_name">
-          <label for="floatingInput">Patient Name</label>
+      <br>
+      <div class="row">
+        <div class="col-md-8 offset-md-2">
+          <form action="/new_diary" method="post" enctype="multipart/form-data">
+            <h1 class="h3 mb-3 fw-normal text-center">Create a New Diary</h1>
+            <div class="form-floating">
+              <input type="text" class="form-control" id="floatingInput" placeholder="Patient Name" name="patient_name">
+              <label for="floatingInput">Patient Name</label>
+            </div>
+            <div class="form-floating">
+              <input type="email" class="form-control" id="floatingInput" placeholder="Patient Email" name="patient_email">
+              <label for="floatingInput">Patient Email</label>
+            </div>
+            <div class="form-floating">
+              <input type="text" class="form-control" id="floatingInput" placeholder="Emergency Contact Name" name="contact_name">
+              <label for="floatingInput">Emergency Contact Name</label>
+            </div>
+            <div class="form-floating">
+              <input type="email" class="form-control" id="floatingInput" placeholder="Contact Email" name="contact_email">
+              <label for="floatingInput">Emergency Contact Email</label>
+            </div>
+            <div class="form-floating">
+              <input type="text" class="form-control" id="floatingInput" placeholder="Diary Name" name="diary_name">
+              <label for="floatingInput">Diary Name</label>
+            </div>
+          
+            <button class="w-100 btn btn-lg btn-primary" type="submit">Submit</button>
+          </form>
         </div>
-        <div class="form-floating">
-          <input type="email" class="form-control" id="floatingInput" placeholder="Patient Email" name="patient_email">
-          <label for="floatingInput">Patient Email</label>
-        </div>
-        <div class="form-floating">
-          <input type="text" class="form-control" id="floatingInput" placeholder="Emergency Contact Name" name="contact_name">
-          <label for="floatingInput">Emergency Contact Name</label>
-        </div>
-        <div class="form-floating">
-          <input type="email" class="form-control" id="floatingInput" placeholder="Contact Email" name="contact_email">
-          <label for="floatingInput">Emergency Contact Email</label>
-        </div>
-        <div class="form-floating">
-          <input type="text" class="form-control" id="floatingInput" placeholder="Diary Name" name="diary_name">
-          <label for="floatingInput">Diary Name</label>
-        </div>
-      
-        <button class="w-100 btn btn-lg btn-primary" type="submit">Submit</button>
-      </form>
+      </div>
 
         <!-- Bootstrap Scripts -->
         <script src="../static/js/bootstrap.bundle.min.js"></script>

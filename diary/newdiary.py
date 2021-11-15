@@ -74,5 +74,11 @@ def new_diary():
         conn.commit()
         send_email(contact_email, message)
 
+        cur.execute('''
+            INSERT INTO contributors(contributor, diary_id, approved, primary_contributor)
+            VALUES('{}', '{}', TRUE, FALSE)
+        '''.format(session['username'], diary_id))
+        conn.commit()
+
     
     return render_template('newdiary.html')
