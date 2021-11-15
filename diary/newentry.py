@@ -1,3 +1,4 @@
+from logging import FileHandler
 from flask import (
     Blueprint, flash, g, redirect, render_template, request, session, url_for
 )
@@ -41,6 +42,18 @@ def entry_page():
             VALUES('{}', '{}', '{}', '{}', '{}')
         '''.format(title, content, media, author, diary_id))
         conn.commit()
+
+        #media upload
+        '''if media:
+            files = request.files["media"]
+            for f in files:
+                fh = open(f"uploads/{f.filename}", "wb")
+                fh.write(f.body)
+                fh.close()'''
+        
+
+
+
 
 
         context = {'e': 1, 'message': 'Message submitted!'}
