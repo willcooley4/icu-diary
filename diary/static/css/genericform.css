@@ -9,10 +9,5 @@ body {
 }
 
 .form-generic {
-    
-   
-    padding: 15px;
-    margin: auto;
-    display: flex;
-    align-items: center;
+    width: 50%;
 }
