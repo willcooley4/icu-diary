@@ -28,17 +28,23 @@ def entry_page():
         conn = get_db()
         cur = conn.cursor()
         cur.execute('''
+            SELECT diary_id
+            FROM contributors
+            WHERE contributor = '{}'
+        '''.format(session['username']))
+        diary_id = cur.fetchone()['diary_id']
+        cur.execute('''
             INSERT INTO diary_entries
             (title, contents, media, author, diary_id)
             VALUES('{}', '{}', '{}', '{}', '{}')
-        '''.format(title, content, media, author, 1))
+        '''.format(title, content, media, author, diary_id))
         conn.commit()
 
 
         context = {'e': 1, 'message': 'Message submitted!'}
         return render_template('newentry.html', **context)
 
-    #GET
+    # GET
     context = {'e': 0, 'message': ''}
 
     #Check for med staff template
