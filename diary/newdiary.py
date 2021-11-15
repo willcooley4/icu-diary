@@ -45,7 +45,7 @@ def new_diary():
         patient_password = token_hex(8)
         register_user(patient_username, patient_password, patient_password, patient_name, patient_email, 'patient')
         message = """\
-        Subject: Hi there
+        Subject: ICU Diary Patient Registration
 
         This message is sent from Python.
         {} has been registered as the patient for diary '{}'.
@@ -67,7 +67,7 @@ def new_diary():
         contact_password = token_hex(8)
         register_user(contact_username, contact_password, contact_password, contact_name, contact_email, 'primary_contributor')
         message = """\
-        Subject: Hi there
+        Subject: ICU Diary Contributor Registration
 
         This message is sent from Python.
         {} has been registered as the primary contributor for diary '{}'.

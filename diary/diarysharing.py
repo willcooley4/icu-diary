@@ -31,9 +31,8 @@ def diary_sharing():
         email = request.form.get('email')
         diary_name = request.form.get('diary')
         message = """\
-        Subject: Hi there
+        Subject: ICU Diary Join Invitation
 
-        This message is sent from Python.
         {} has requested access to the diary '{}'.
         """.format(session['username'], diary_name)
 

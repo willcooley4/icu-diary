@@ -45,9 +45,8 @@ def invite():
 
             # TODO: use names, not usernames
             message = """\
-            Subject: Hi there
+            Subject: Diary Invitation
 
-            This message is sent from Python.
             {} has invited you to contribute to {}'s diary.
             Use diary_id {} to register after creating an account at: https://icu-diary-495.herokuapp.com/auth/signup
             """.format(session['username'], row['name'], diary_id)
