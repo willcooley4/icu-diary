@@ -27,6 +27,16 @@ def view_diary():
 
     conn = get_db()
     cur = conn.cursor()
+
+    cur.execute('''
+        SELECT user_type FROM users
+        WHERE username = '{}'
+    '''.format(session['username']))
+    row = cur.fetchone()
+    print(row)
+    if row['user_type']  not in ['patient', 'admin']:
+        return 'Access Denied. Your account type does not have access to this page.', 401
+
     cur.execute('''
         SELECT id
         FROM diaries
@@ -75,9 +85,9 @@ def download(filename):
         '''.format(row['author'], row['created'], row['contents'])
         pdf.multi_cell(0,10,txt)
 
-    if os.path.exists("diary/tmp/test.pdf"):
-        os.remove("diary/tmp/test.pdf")
-    pdf.output('diary/tmp/test.pdf', 'F')
+    if os.path.exists("diary/tmp/diary.pdf"):
+        os.remove("diary/tmp/diary.pdf")
+    pdf.output('diary/tmp/diary.pdf', 'F')
 
     # Appending app path to upload folder path within app root folder
     uploads = os.path.join(current_app.root_path, 'tmp')

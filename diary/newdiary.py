@@ -18,10 +18,19 @@ def new_diary():
         return redirect('/auth/login')
     # TODO: verify user is doctor or admin
 
+    # retrieve database connection
+    conn = get_db()
+    cur = conn.cursor()
+    cur.execute('''
+        SELECT user_type FROM users
+        WHERE username = '{}'
+    '''.format(session['username']))
+    row = cur.fetchone()
+    print(row)
+    if row['user_type']  not in ['admin', 'physician']:
+        return 'Access Denied. Your account type does not have access to this page.', 401
+
     if request.method == 'POST':
-        # retrieve database connection
-        conn = get_db()
-        cur = conn.cursor()
 
         # get form contents
         patient_name = request.form.get('patient_name')

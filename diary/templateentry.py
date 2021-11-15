@@ -16,6 +16,18 @@ bp = Blueprint('template_entry', __name__)  # NOTE: url_prefix?
 def template_entry():
     if 'username' not in session:
         return redirect('/auth/login')
+
+
+    conn = get_db()
+    cur = conn.cursor()
+    cur.execute('''
+        SELECT user_type FROM users
+        WHERE username = '{}'
+    '''.format(session['username']))
+    row = cur.fetchone()
+    print(row)
+    if row['user_type']  not in ['admin', 'physician']:
+        return 'Access Denied. Your account type does not have access to this page.', 401
     
     if request.method == 'POST':
         #retrieving data from page
@@ -57,8 +69,6 @@ def template_entry():
             content += ("Goals for patient discharge: " + goals + '\n')
         
         #database submission
-        conn = get_db()
-        cur = conn.cursor()
         cur.execute('''
             INSERT INTO diary_entries
             (title, contents, author, diary_id)

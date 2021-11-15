@@ -16,6 +16,16 @@ bp = Blueprint('diary_sharing', __name__)  # NOTE: url_prefix?
 def diary_sharing():
     if 'username' not in session:
         return redirect('/auth/login')
+    conn = get_db()
+    cur = conn.cursor()
+    cur.execute('''
+        SELECT user_type FROM users
+        WHERE username = '{}'
+    '''.format(session['username']))
+    row = cur.fetchone()
+    print(row)
+    if row['user_type']  not in ['admin', 'primary_contributor', 'contributor']:
+        return 'Access Denied. Your account type does not have access to this page.', 401
     if request.method == 'POST':
         # Access form data
         email = request.form.get('email')

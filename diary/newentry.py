@@ -18,6 +18,10 @@ def entry_page():
     if 'username' not in session:
         return redirect('/auth/login')
     
+
+    conn = get_db()
+    cur = conn.cursor()
+
     if request.method == 'POST':
         title = request.form.get('title')
         content = request.form.get('content')
@@ -25,8 +29,6 @@ def entry_page():
         author = flask.session["username"]
         # access database and submit diary entry
 
-        conn = get_db()
-        cur = conn.cursor()
         cur.execute('''
             SELECT diary_id
             FROM contributors
