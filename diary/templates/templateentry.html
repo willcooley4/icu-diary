@@ -64,7 +64,7 @@
     </nav>
     <!-- End of navbar-->
 
-    <!-- Contribution entry page -->
+    <!-- Template for doctor status update -->
     <h1 class="text-center">New Diary Entry</h1>
     <main class="form-generic text-center">
 
@@ -83,25 +83,57 @@
           </div>
   
           <div class="form-group">
-            <label for="content">Your message</label>
-            <textarea class="form-control" id="content" name = "content" rows="5" placeholder="Your message"></textarea>
-          </div>        
-  
-          <div class = "mb-3">
-              <label for="media" class="form-label">Select media to upload</label>
-              <input class="form-control" type="file" id="media" name = "media" multiple>
+            <label for="bp">Blood Pressure</label>
+            <textarea class="form-control" id="bp" name = "bp" placeholder="Patient blood pressure"></textarea>
+          </div>  
+          
+          <div class="form-group">
+            <label for="pulse">Pulse</label>
+            <textarea class="form-control" id="pulse" name = "pulse" placeholder="Patient pulse"></textarea>
           </div>
-  
+
+          <div class="form-group">
+            <label for="ox">Oxygen Level</label>
+            <textarea class="form-control" id="ox" name = "ox" placeholder="Patient oxygen level"></textarea>
+          </div>
+
+          <div class="form-group">
+            <label for="temp">Temperature</label>
+            <textarea class="form-control" id="temp" name = "temp" placeholder="Patient temperature"></textarea>
+          </div>
+
+          <div class="form-group">
+            <label for="pain">Pain Scale</label>
+            <textarea class="form-control" id="pain" name = "pain" placeholder="Patient reported pain scale if available"></textarea>
+          </div>
+
+          <div class="form-group">
+            <label for="feel">Overall Feeling</label>
+            <textarea class="form-control" id="feel" name = "feel" rows = "3" placeholder="Patient overall feeling if available"></textarea>
+          </div>
+
+          <div class="form-group">
+            <label for="meds">Medicine</label>
+            <textarea class="form-control" id="meds" name = "meds" placeholder="Any medication administered to patient"></textarea>
+          </div>
+
+          <div class="form-group">
+            <label for="diagnosis">Updated Diagnosis</label>
+            <textarea class="form-control" id="diagnosis" name = "diagnosis" placeholder="Updated patient diagnosis if available"></textarea>
+          </div>
+
+          <div class="form-group">
+            <label for="procedures">Upcoming Procedures</label>
+            <textarea class="form-control" id="procedures" name = "procedures" rows = "3" placeholder="New upcoming procedures"></textarea>
+          </div>
+
+          <div class="form-group">
+            <label for="goals">Discharge Goals</label>
+            <textarea class="form-control" id="goals" name = "goals" placeholder="Goals for discharge from ICU"></textarea>
+          </div>
+
           <button class="w-100 btn btn-lg btn-primary" type="submit">Submit</button>        
         </form>
-
-        {% if e == 2 %}
-          <p>Templated message option for medical staff.</p>
-          <form action="/template_entry" method="post" enctype="multipart/form-data">
-            <button class="w-100 btn btn-lg btn-primary" type="submit">Template</button>
-          </form>
-        {% endif %}
-
 
     </main>
 

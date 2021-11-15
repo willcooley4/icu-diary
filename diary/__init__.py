@@ -62,6 +62,9 @@ def create_app(test_config=None):
     from diary import viewdiary
     app.register_blueprint(viewdiary.bp)
 
+    from diary import templateentry
+    app.register_blueprint(templateentry.bp)
+
     from diary.newentry import entry_page
 
 

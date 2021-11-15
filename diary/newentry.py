@@ -18,8 +18,6 @@ def entry_page():
     if 'username' not in session:
         return redirect('/auth/login')
     
-    context = {'e': 0, 'message': ''}
-
     if request.method == 'POST':
         title = request.form.get('title')
         content = request.form.get('content')
@@ -35,9 +33,27 @@ def entry_page():
             VALUES('{}', '{}', '{}', '{}', '{}')
         '''.format(title, content, media, author, 1))
         conn.commit()
+
+
         context = {'e': 1, 'message': 'Message submitted!'}
         return render_template('newentry.html', **context)
 
+    #GET
+    context = {'e': 0, 'message': ''}
+
+    #Check for med staff template
+    author = flask.session["username"]
+    conn = get_db()
+    cur = conn.cursor()
+    cur.execute('''
+        SELECT * FROM users
+        WHERE username = '{}'
+    '''.format(author))
+    conn.commit()
+    usertype = cur.fetchone()['User_type']
+    if usertype == 'physician':
+        context = {'e': 2, 'message' : ''}
+        return render_template('newentry.html', **context)
 
     return render_template('newentry.html', **context)
 
