@@ -65,53 +65,42 @@
     <!-- End of navbar-->
 
     <!-- Contribution entry page -->
-    <h1 class="text-center">New Diary Entry</h1>
+    <br> <h1 class="text-center">New Diary Entry</h1> <br>
     <main class="form-generic text-center">
+      {% if e == 1 %}
+        <div class="alert alert-warning" role="alert">
+          {{ message }}
+        </div>
+      {% endif %}
+  
+      <form action="/entry_page" method="post" enctype="multipart/form-data">
+        <div class="form-group">
+          <label for="title">Message title</label>
+          <input type="text" class="form-control" id="title" placeholder="Message title" name="title">  
+        </div> <br>
+  
+        <div class="form-group">
+          <label for="content">Your message</label>
+          <textarea class="form-control" id="content" name = "content" rows="5" placeholder="Your message"></textarea>
+        </div> <br>       
+  
+        <div class = "mb-3">
+          <label for="media" class="form-label">Select media to upload</label>
+          <input class="form-control" type="file" id="media" name = "media" multiple>
+        </div> <br> <br>
+  
+        <button class="w-100 btn btn-lg btn-primary" type="submit">Submit</button>        
+      </form>
 
-  
-        {% if e == 1 %}
-          <div class="alert alert-warning" role="alert">
-            {{ message }}
-          </div>
-        {% endif %}
-  
-        <form action="/entry_page" method="post" enctype="multipart/form-data">
-  
-          <div class="form-group">
-            <label for="title">Message title</label>
-            <input type="text" class="form-control" id="title" placeholder="Message title" name="title">  
-          </div>
-  
-          <div class="form-group">
-            <label for="content">Your message</label>
-            <textarea class="form-control" id="content" name = "content" rows="5" placeholder="Your message"></textarea>
-          </div>        
-  
-          <div class = "mb-3">
-              <label for="media" class="form-label">Select media to upload</label>
-              <input class="form-control" type="file" id="media" name = "media" multiple>
-          </div>
-  
-          <button class="w-100 btn btn-lg btn-primary" type="submit">Submit</button>        
+      {% if e == 2 %}
+        <p>Templated message option for medical staff.</p>
+        <form action="/template_entry" method="post" enctype="multipart/form-data">   
+          <button class="w-100 btn btn-lg btn-primary" type="submit">Template</button>
         </form>
-
-        {% if e == 2 %}
-          <p>Templated message option for medical staff.</p>
-          <form action="/template_entry" method="post" enctype="multipart/form-data">   
-            <button class="w-100 btn btn-lg btn-primary" type="submit">Template</button>
-          </form>
-        {% endif %}
+      {% endif %}
 
 
     </main>
-
-
-
-
-
-
-
-
 
     <!-- Bootstrap Scripts -->
     <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
