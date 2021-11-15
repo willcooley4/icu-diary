@@ -71,11 +71,16 @@ def invite():
         else:
             return '400 Bad Request', 400
 
-    # TODO: select correct diary_id
+
+    cur.execute('''
+        SELECT diary_id FROM contributors
+        WHERE contributor = '{}'
+    '''.format(session['username']))    
+    diary_id = cur.fetchone()['diary_id']
     cur.execute('''
         SELECT * FROM contributors
         WHERE diary_id = '{}' AND approved = FALSE
-    '''.format(1))
+    '''.format(diary_id))
     rows = cur.fetchall()
     print(rows)
 
