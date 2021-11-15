@@ -45,5 +45,21 @@ def home():
         if not row['approved']:
             print('this dude is unverified')
             return render_template('unverified_home.html')
-        
-    return render_template('index.html')
+
+    context = {} 
+    print(user_type)
+    if user_type == 'admin':
+        # TODO: admin doesn't need all these links, just easier for debugging
+        context['cards'] = ['view', 'write', 'share', 'create', 'requests', 'learn', 'admin']
+    elif user_type == 'primary_contributor':
+        context['cards'] = ['write', 'share', 'requests', 'learn']
+    elif user_type == 'contributor':
+        context['cards'] = ['write', 'share', 'learn']
+    elif user_type == 'patient':
+        context['cards'] = ['view', 'write', 'learn']
+    elif user_type == 'physician':
+        context['cards'] = ['write', 'create', 'learn']
+    else:
+        return 'Bad request: user_type does not exitst', 401
+
+    return render_template('index.html', **context)
