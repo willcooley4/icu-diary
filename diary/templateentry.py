@@ -67,13 +67,20 @@ def template_entry():
             content += ("New upcoming procedures: " + procedures + '\n')
         if goals:
             content += ("Goals for patient discharge: " + goals + '\n')
+
+        cur.execute('''
+            SELECT diary_id
+            FROM contributors
+            WHERE contributor = '{}'
+        '''.format(session['username']))
+        diary_id = cur.fetchone()['diary_id']
         
         #database submission
         cur.execute('''
             INSERT INTO diary_entries
             (title, contents, author, diary_id)
             VALUES('{}', '{}', '{}', '{}')
-        '''.format(title, content, author, 1))
+        '''.format(title, content, author, diary_id))
         conn.commit()
 
         context = {'e': 1, 'message': 'Message submitted!'}
