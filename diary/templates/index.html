@@ -10,6 +10,7 @@
     
     <!-- Custom styles for this template -->
     <link href="../static/css/headers.css" rel="stylesheet">
+    <link href="../static/css/features.css" rel="stylesheet">
   </head>
   <body>
 
@@ -41,62 +42,79 @@
   </header>
   <!-- End Header -->
 
-  <div class="b-example-divider"></div>
-  <br/>
-  <div class="row align-items-md-stretch">
-    <div class="col-md-6">
-      <div class="h-100 p-5 text-white bg-dark rounded-3">
-        <h2>View Diary</h2>
-        <p>Browse through posts in chronological order and download for offline reading.</p>
-        <form action="/view_diary">
-          <button class="btn btn-outline-light" type="submit">View Now</button>
-        </form>
+ 
+    <div class="container px-4 py-5" id="custom-cards">
+  
+      <div class="row row-cols-1 row-cols-lg-2 align-items-stretch g-4 py-5">
+  
+        <div class="col">
+          <div class="card card-cover h-100 overflow-hidden text-white bg-dark rounded-5 shadow-lg" style="background-image: url('../static/images/unsplash-photo-1.jpg');">
+            <div class="d-flex flex-column h-100 p-5 pb-3 text-white text-shadow-1">
+              <h2 class="pt-5 mt-5 mb-4 display-6 lh-1 fw-bold">Browse through posts or download for offline reading.</h2>
+              <form action="view_diary"><button class="btn btn-outline-secondary" type="submit">View Diary</button></form>
+            </div>
+          </div>
+        </div>
+
+        <div class="col">
+          <div class="card card-cover h-100 overflow-hidden text-white bg-dark rounded-5 shadow-lg" style="background-image: url('../static/images/unsplash-photo-1.jpg');">
+            <div class="d-flex flex-column h-100 p-5 pb-3 text-white text-shadow-1">
+              <h2 class="pt-5 mt-5 mb-4 display-6 lh-1 fw-bold">Record a visit, give a status report, or just leave a nice note.</h2>
+              <form action="entry_page"><button class="btn btn-outline-secondary" type="submit">Write Entry</button></form>
+            </div>
+          </div>
+        </div>
+  
       </div>
-    </div>
-    <div class="col-md-6">
-      <div class="h-100 p-5 bg-light border rounded-3">
-        <h2>Make Contribution</h2>
-        <p>Record a visit, give a status report, or just leave a nice note.</p>
-        <form action="/entry_page"><button class="btn btn-outline-secondary" type="submit">Write Now</button></form>
+
+      <div class="row row-cols-1 row-cols-lg-2 align-items-stretch g-4 py-5">
+  
+        <div class="col">
+          <div class="card card-cover h-100 overflow-hidden text-white bg-dark rounded-5 shadow-lg" style="background-image: url('../static/images/unsplash-photo-1.jpg');">
+            <div class="d-flex flex-column h-100 p-5 pb-3 text-white text-shadow-1">
+              <h2 class="pt-5 mt-5 mb-4 display-6 lh-1 fw-bold">Know others who would like to contribute to _____'s diary?</h2>
+              <form action="diary_sharing"><button class="btn btn-outline-secondary" type="submit">Share Diary</button></form>
+            </div>
+          </div>
+        </div>
+
+        <div class="col">
+          <div class="card card-cover h-100 overflow-hidden text-white bg-dark rounded-5 shadow-lg" style="background-image: url('../static/images/unsplash-photo-1.jpg');">
+            <div class="d-flex flex-column h-100 p-5 pb-3 text-white text-shadow-1">
+              <h2 class="pt-5 mt-5 mb-4 display-6 lh-1 fw-bold">New patient arrival? Begin a new diary to help them on the road to recovery.</h2>
+              <form action="new_diary"><button class="btn btn-outline-secondary" type="submit">Create Diary</button></form>
+            </div>
+          </div>
+        </div>
+  
       </div>
-    </div>
-  </div>
-  <div class="row align-items-md-stretch">
-    <div class="col-md-6">
-      <div class="h-100 p-5 bg-light border rounded-3">
-        <h2>Share Diary</h2>
-        <p>Know others who would like to contribute to _____'s diary?</p>
-        <form action="/diary_sharing">
-          <button class="btn btn-outline-secondary" type="submit">Share Now</button>
-        </form>
+
+      <div class="row row-cols-1 row-cols-lg-2 align-items-stretch g-4 py-5">
+  
+        <div class="col">
+          <div class="card card-cover h-100 overflow-hidden text-white bg-dark rounded-5 shadow-lg" style="background-image: url('../static/images/unsplash-photo-1.jpg');">
+            <div class="d-flex flex-column h-100 p-5 pb-3 text-white text-shadow-1">
+              <h2 class="pt-5 mt-5 mb-4 display-6 lh-1 fw-bold">Approve family and friends who wish to contribute.</h2>
+              <form action="invite"><button class="btn btn-outline-secondary" type="submit">Manage Requests</button></form>
+            </div>
+          </div>
+        </div>
+
+        <div class="col">
+          <div class="card card-cover h-100 overflow-hidden text-white bg-dark rounded-5 shadow-lg" style="background-image: url('../static/images/unsplash-photo-1.jpg');">
+            <div class="d-flex flex-column h-100 p-5 pb-3 text-white text-shadow-1">
+              <h2 class="pt-5 mt-5 mb-4 display-6 lh-1 fw-bold">Learn more about ICU diaries and how to contribute.</h2>
+              <form action="http://www.icu-diary.org/diary/Diary.html"><button class="btn btn-outline-secondary" type="submit">Learn More</button></form>
+            </div>
+          </div>
+        </div>
+  
       </div>
+
     </div>
-    <div class="col-md-6">
-      <div class="h-100 p-5 text-white bg-dark rounded-3">
-        <h2>Create Diary</h2>
-        <p>New patient arrival? Begin a new diary to help them on the road to recovery.</p>
-        <form action="/new_diary"><button class="btn btn-outline-light" type="submit">Create Now</button></form>
-      </div>
-    </div>
-  </div>
-  <div class="row align-items-md-stretch">
-    <div class="col-md-6">
-      <div class="h-100 p-5 text-white bg-dark rounded-3">
-        <h2>Manage Join Requests</h2>
-        <p>Approve family and friends who wish to contribute.</p>
-        <form action="/invite">
-          <button class="btn btn-outline-light" type="submit">Manage Now</button>
-        </form>
-      </div>
-    </div>
-    <div class="col-md-6">
-      <div class="h-100 p-5 bg-light border rounded-3">
-        <h2>Learn More</h2>
-        <p>Curious about this diary's purpose or the best way to contribute?</p>
-        <form action="http://www.icu-diary.org/diary/Diary.html"><button class="btn btn-outline-secondary" type="submit">Learn More</button></form>
-      </div>
-    </div>
-  </div>
+
+
+
 </main>
 
 <script src="../static/js/bootstrap.bundle.min.js"></script>

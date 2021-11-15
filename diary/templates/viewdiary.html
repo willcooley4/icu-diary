@@ -9,6 +9,15 @@
     <link href="../static/css/bootstrap.min.css" rel="stylesheet">
     <!-- Custom styles for this template -->
     <link href="../static/css/headers.css" rel="stylesheet">
+    <style>
+      .carousel-control-prev-icon {
+        background-image: url("data:image/svg+xml;charset=utf8,%3Csvg xmlns='http://www.w3.org/2000/svg' fill='%23000' viewBox='0 0 8 8'%3E%3Cpath d='M5.25 0l-4 4 4 4 1.5-1.5-2.5-2.5 2.5-2.5-1.5-1.5z'/%3E%3C/svg%3E") !important;
+       }
+       
+       .carousel-control-next-icon {
+         background-image: url("data:image/svg+xml;charset=utf8,%3Csvg xmlns='http://www.w3.org/2000/svg' fill='%23000' viewBox='0 0 8 8'%3E%3Cpath d='M2.75 0l-1.5 1.5 2.5 2.5-2.5 2.5 1.5 1.5 4-4-4-4z'/%3E%3C/svg%3E") !important;
+       }
+    </style>
   </head>
   <body>
 
@@ -49,26 +58,44 @@
 
     <br><br>
 
-    {% for entry in entries %}
+    <div id="carouselExampleControls" data-interval="false" data-bs-interval="false" interval="false" class="carousel slide">
+      <div class="carousel-inner">
+        <div class="carousel-item active">
+              <div class="card border-primary mb-3" style="height: 70vh;">
+                <div class="card-header">Cover Page</div>
+                <div class="card-body">
+                  <h4 class="card-title">Title: Default diary title</h4>
+                  <p class="card-text">
+                  Welcome to your ICU diary. <br>
+                  Feel free to use the right and left arrows to browse the diary in chronological order.
+                  </p>
+                </div>
+          </div>
+        </div>
+        {% for entry in entries %}
+        <div class="carousel-item">
+          <div class="card border-primary mb-3" style="height: 70vh;">
+            <div class="card-header">From: {{ entry['author'] }} on {{ entry['created'] }}</div>
+            <div class="card-body">
+              <h4 class="card-title">Title: {{ entry['title'] }}</h4>
+              <p class="card-text">{{ entry['contents'] }}</p>
+            </div>
+          </div>
+        </div>
+        {% endfor %}
 
-    <!--
-      <div class="container">
-        <p>From: {{ entry['author'] }}  {{ entry['created'] }}</p>
-        <h6>{{ entry['title'] }}</h6>
-        <p>{{ entry['contents'] }}</p>
+        <div class="carousel-item">
+          <h1>slide 3</h1>
+        </div>
       </div>
-      <br><br><hr><br><br>
-    -->
-    
-    <div class="card">
-      <div class="card-body">
-        <h5 class="card-title">{{ entry['title'] }}</h5>
-        <h6 class="card-subtitle mb-2 text-muted">From: {{ entry['author'] }}  {{ entry['created'] }}</h6>
-        <p class="card-text">{{ entry['contents'] }}</p>
-      </div>
+      <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleControls" data-bs-slide="prev">
+        <span class="carousel-control-prev-icon"></span>
+      </button>
+      <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleControls" data-bs-slide="next">
+        <span class="carousel-control-next-icon"></span>
+      </button>
+
     </div>
-
-    {% endfor %}
 
     
   </body>
