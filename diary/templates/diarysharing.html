@@ -65,24 +65,23 @@
     </nav>
     <!-- End of navbar-->
 
-    <h1 class="text-center">Diary Sharing</h1> <br>
+    <br> <h1 class="text-center">Diary Sharing</h1> <br>
     <main class="form-generic">
       <form action="/diary_sharing" method="post" enctype="multipart/form-data">
         <div class="form-group">
-          <label for="email">Email address</label>
+          <label for="email">Please enter the email you want to send diary to</label>
           <input type="email" class="form-control" id="email" aria-describedby="emailHelp" placeholder="Enter email" name="email">
-          <small id="emailHelp" class="form-text text-muted">Please enter the email you want to send diary to</small>
-        </div>
+        </div> <br>
 
         <div class="form-group">
           <label for="cell">Please enter the number you want to send the diary to</label>
           <input type="text" class="form-control" id="cell" placeholder="Enter phone number" name="cell">
-        </div>
+        </div> <br>
 
         <div class="form-group">
           <label for="diary">Please enter diary name</label>
           <input type="text" class="form-control" id="diary" placeholder="Diary Name" name="diary">
-        </div>
+        </div> <br> <br>
 
         <button class="w-100 btn btn-lg btn-primary" type="submit">Submit</button>
       </form>
