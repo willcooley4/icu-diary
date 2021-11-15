@@ -25,8 +25,17 @@ def view_diary():
     conn = get_db()
     cur = conn.cursor()
     cur.execute('''
+        SELECT id
+        FROM diaries
+        WHERE patient = '{}'
+    '''.format(session['username']))
+    print(session['username'])
+    diary_id = cur.fetchone()['id']
+    print(diary_id)
+    cur.execute('''
         SELECT * FROM diary_entries
-    ''')
+        WHERE diary_id = '{}'
+    '''.format(diary_id))
     rows = cur.fetchall()
 
     context = {'entries': rows}
