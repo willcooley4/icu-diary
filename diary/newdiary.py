@@ -47,7 +47,6 @@ def new_diary():
         message = """\
         Subject: ICU Diary Patient Registration
 
-        This message is sent from Python.
         {} has been registered as the patient for diary '{}'.
         Username: {}
         Password: {}
@@ -69,7 +68,6 @@ def new_diary():
         message = """\
         Subject: ICU Diary Contributor Registration
 
-        This message is sent from Python.
         {} has been registered as the primary contributor for diary '{}'.
         This is the ICU diary for patient: {}
         Username: {}
