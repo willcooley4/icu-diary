@@ -2,7 +2,13 @@
 
 The hosted version of this app can be found at the following URL: <br>
 https://icu-diary-495.herokuapp.com/ <br>
-This can be browsed for testing, but some behind the scenes functionality in alpha is shown best through viewing the underlying database. We have given instructors access to the hosted heroku app and connected database. This should be available by creating a heroku account with your umich email (and you may have received an email notification about it already). <br><br>
+To begin using the webapp you can log into under a variety of accounts. An admin account will allow you to have full access to all aspects of the website, including creating doctor accounts. A doctor account will allow you to make contributions and create new patient accounts. A primary contributor (emergency contact) account will allow you to make contributions and manage new contributors. A patient account will let you view your diary and have the option for a pdf download of it. <br>
+The following are already established accounts for a variety of account types. <br>
+Admin<br>
+user: admin <br>
+pass: admin <br> <br>
+
+
 
 
 to run locally: <br><br>
