@@ -65,6 +65,9 @@ def create_app(test_config=None):
     from diary import templateentry
     app.register_blueprint(templateentry.bp)
 
+    from diary import learnmore
+    app.register_blueprint(learnmore.bp)
+
     from diary.newentry import entry_page
 
 
