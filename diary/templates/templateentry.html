@@ -77,7 +77,6 @@
       <form action="/entry_page" method="post" enctype="multipart/form-data">
   
         <div class="form-group">
-          <label for="title">Message title</label>
           <input type="text" class="form-control" id="title" placeholder="Message title" name="title">  
         </div> <br>
 
@@ -101,34 +100,33 @@
 
         </div> <br>
 
-        <div class="form-group">
-          <label for="pain">Pain Scale</label>
-          <textarea class="form-control" id="pain" name = "pain" placeholder="Patient reported pain scale if available"></textarea>
+        <div class="row g-3">
+          <div class="col-6">
+            <input type="text" class="form-control" id="meds" name = "meds" placeholder="Any medication administered to patient">
+          </div>
+
+          <div class="col-6">
+            <input type="text" class="form-control" id="diagnosis" name = "diagnosis" placeholder="Updated patient diagnosis if available">
+          </div>
         </div> <br>
 
         <div class="form-group">
-          <label for="feel">Overall Feeling</label>
-          <textarea class="form-control" id="feel" name = "feel" rows = "3" placeholder="Patient overall feeling if available"></textarea>
-        </div> <br>
-
-        <div class="form-group">
-          <label for="meds">Medicine</label>
-          <textarea class="form-control" id="meds" name = "meds" placeholder="Any medication administered to patient"></textarea>
-        </div> <br>
-
-        <div class="form-group">
-          <label for="diagnosis">Updated Diagnosis</label>
-          <textarea class="form-control" id="diagnosis" name = "diagnosis" placeholder="Updated patient diagnosis if available"></textarea>
-        </div> <br>
-
-        <div class="form-group">
-          <label for="procedures">Upcoming Procedures</label>
           <textarea class="form-control" id="procedures" name = "procedures" rows = "3" placeholder="New upcoming procedures"></textarea>
         </div> <br>
 
         <div class="form-group">
-          <label for="goals">Discharge Goals</label>
           <textarea class="form-control" id="goals" name = "goals" placeholder="Goals for discharge from ICU"></textarea>
+        </div> <br>
+
+        <div class="row g-3">
+          <label for="title">Patient Reported Status If Available</label>
+          <div class="col-10">
+            <input type="text" class="form-control" id="feel" name = "feel" rows = "3" placeholder="Overall feeling">
+          </div>
+
+          <div class="col-2">
+            <input type="text" class="form-control" id="pain" name = "pain" placeholder="Pain level">
+          </div>
         </div> <br> <br>
 
         <button class="w-100 btn btn-lg btn-primary" type="submit">Submit</button>        
