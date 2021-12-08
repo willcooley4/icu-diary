@@ -42,6 +42,10 @@ def new_diary():
         contact_email = request.form.get('contact_email')
         diary_name = request.form.get('diary_name')
 
+        if patient_email == contact_email:
+            context = {'user_type': user_type, 'e': 1, 'message': 'Patient and emergency contact email cannot match.'}
+            return render_template('newdiary.html', **context)
+
 
         # register patient + email
         patient_username = patient_name.replace(" ", "").lower() + '_' + token_hex(4)

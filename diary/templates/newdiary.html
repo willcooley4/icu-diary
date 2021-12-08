@@ -69,6 +69,11 @@
 
     <br> <h1 class="text-center">Create a New Diary</h1> <br>
     <main class="form-generic">
+      {% if e == 1 %}
+        <div class="alert alert-warning" role="alert">
+          {{ message }}
+        </div>
+      {% endif %}
       <form action="/new_diary" method="post" enctype="multipart/form-data">
 
         <div class="form-floating">
