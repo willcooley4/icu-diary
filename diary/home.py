@@ -32,7 +32,7 @@ def home():
             FROM diaries
             WHERE id = '{}'
         '''.format(diary_id))
-        row = cur.fetchall()
+        row = cur.fetchone()
         if row == None:
             context = {'e': 1, 'message': 'That Diary ID does not exist. Please try again.'}
             return render_template('unverified_home.html', **context)
