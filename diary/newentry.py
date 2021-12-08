@@ -48,7 +48,7 @@ def entry_page():
         else:
             patient = request.form.get('patient')
             cur.execute('''
-                SELECT diary_id 
+                SELECT id 
                 FROM diaries
                 WHERE patient = '{}'
             '''.format(patient))

@@ -71,7 +71,7 @@ def template_entry():
 
         
         cur.execute('''
-            SELECT diary_id 
+            SELECT id 
             FROM diaries
             WHERE patient = '{}'
         '''.format(patient))
