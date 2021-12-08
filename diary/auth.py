@@ -71,6 +71,10 @@ def signup():
         fullname = request.form.get('fullname')
         email = request.form.get('email')
 
+        if password != password2:
+            context = {'e': 1, 'message': 'Passwords do not match.'}
+            return render_template('auth/signup.html', **context)
+
         register_user(username, password, password2, fullname, email, 'contributor')
 
         # Start user session
