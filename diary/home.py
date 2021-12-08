@@ -25,6 +25,18 @@ def home():
         print('post worked :)')
         diary_id = request.form.get('diary_id')
         message = request.form.get('message')
+
+        #check valid diaryid
+        cur.execute('''
+            SELECT id
+            FROM diaries
+            WHERE id = '{}'
+        '''.format(diary_id))
+        row = cur.fetchall()
+        if row == None:
+            context = {'e': 1, 'message': 'That Diary ID does not exist. Please try again.'}
+            return render_template('unverified_home.html', **context)
+
         cur.execute('''
             INSERT INTO contributors(contributor, diary_id, approved, primary_contributor, message)
             VALUES('{}', '{}', FALSE, FALSE, '{}')
