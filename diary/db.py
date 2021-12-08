@@ -31,8 +31,8 @@ def init_db():
     # with db.cursor() as cursor:
     #     cursor.execute(current_app.open_resource('test_diary.sql').read())
 
-    # with current_app.open_resource('schema.sql') as f:
-    #     db.execute(f.read().decode('utf8'))
+    with current_app.open_resource('schema.sql') as f:
+        db.execute(f.read().decode('utf8'))
 
     with db.cursor() as cursor:
         cursor.execute(current_app.open_resource('schema.sql').read())
