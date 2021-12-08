@@ -2,15 +2,8 @@ from logging import FileHandler
 from flask import (
     Blueprint, flash, g, redirect, render_template, request, session, url_for
 )
-import firebase_admin
-from firebase import Firebase
-from firebase_admin import credentials
-from firebase_admin import storage as s
-import datetime
 
 
-# Import UUID4 to create token
-from uuid import uuid4
 
 from diary.db import get_db
 import diary
