@@ -62,7 +62,7 @@ def home():
     print(user_type)
     if user_type == 'admin':
         # TODO: admin doesn't need all these links, just easier for debugging
-        context['cards'] = ['view', 'write', 'share', 'create', 'requests', 'learn', 'admin']
+        context['cards'] = ['write', 'share', 'create', 'requests', 'learn', 'admin']
     elif user_type == 'primary_contributor':
         context['cards'] = ['write', 'share', 'requests', 'learn']
     elif user_type == 'contributor':

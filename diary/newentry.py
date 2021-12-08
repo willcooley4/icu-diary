@@ -2,6 +2,15 @@ from logging import FileHandler
 from flask import (
     Blueprint, flash, g, redirect, render_template, request, session, url_for
 )
+import firebase_admin
+from firebase import Firebase
+from firebase_admin import credentials
+from firebase_admin import storage as s
+import datetime
+
+
+# Import UUID4 to create token
+from uuid import uuid4
 
 from diary.db import get_db
 import diary
@@ -76,3 +85,14 @@ def entry_page():
     context = {'e': 0, 'message': '', 'user_type': user_type}
     return render_template('newentry.html', **context)
 
+
+# @message_api.route('/messenger/message/send/picture/individual', methods=['POST'])
+# def send_individual_picture():
+#     picture = request.files['picture']
+
+#     temp = tempfile.NamedTemporaryFile(delete=False)
+#     picture.save(temp.name)
+#     firebase.storage().put(temp.name)
+
+#     # Clean-up temp image
+#     os.remove(temp.name)

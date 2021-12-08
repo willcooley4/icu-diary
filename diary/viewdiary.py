@@ -34,7 +34,7 @@ def view_diary():
     '''.format(session['username']))
     row = cur.fetchone()
     print(row)
-    if row['user_type']  not in ['patient', 'admin']:
+    if row['user_type']  not in ['patient']:
         return 'Access Denied. Your account type does not have access to this page.', 401
 
     user_type = row['user_type']
