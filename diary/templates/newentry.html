@@ -80,15 +80,26 @@
           {{ message }}
         </div>
       {% endif %}
+
+      {% if e == 2 %}
+        <div class="alert alert-warning" role="alert">
+          {{ message }}
+        </div>
+      {% endif %}
   
       <form action="/entry_page" method="post" enctype="multipart/form-data">
+
+        {% if user_type == "physician" %}
         <div class="form-group">
-          <label for="title">Message title</label>
+          <input type="text" class="form-control" id="patient" placeholder="Patient name" name="patient">
+        </div>
+        {% endif %}
+
+        <div class="form-group">
           <input type="text" class="form-control" id="title" placeholder="Message title" name="title">  
         </div> <br>
   
         <div class="form-group">
-          <label for="content">Your message</label>
           <textarea class="form-control" id="content" name = "content" rows="5" placeholder="Your message"></textarea>
         </div> <br>       
   

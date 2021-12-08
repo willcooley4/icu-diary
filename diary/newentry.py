@@ -36,14 +36,31 @@ def entry_page():
         content = request.form.get('content')
         media = request.form.get('media')
         author = flask.session["username"]
-        # access database and submit diary entry
+        
+        #get diary_id
+        if user_type != 'physician':
+            cur.execute('''
+                SELECT diary_id
+                FROM contributors
+                WHERE contributor = '{}'
+            '''.format(session['username']))
+            diary_id = cur.fetchone()['diary_id']
+        else:
+            patient = request.form.get('patient')
+            cur.execute('''
+                SELECT diary_id 
+                FROM diaries
+                WHERE patient = '{}'
+            '''.format(patient))
+            row = cur.fetchone()
 
-        cur.execute('''
-            SELECT diary_id
-            FROM contributors
-            WHERE contributor = '{}'
-        '''.format(session['username']))
-        diary_id = cur.fetchone()['diary_id']
+            if row == None:
+                context = {'e': 2, 'message': 'Incorrect patient name or patient does not exist. Please try again.', 'user_type': user_type}
+                return render_template('newentry.html', **context)
+            diary_id = row['diary_id']
+
+
+        # access database and submit diary entry
         cur.execute('''
             INSERT INTO diary_entries
             (title, contents, media, author, diary_id)
@@ -51,23 +68,11 @@ def entry_page():
         '''.format(title, content, media, author, diary_id))
         conn.commit()
 
-        #media upload
-        '''if media:
-            files = request.files["media"]
-            for f in files:
-                fh = open(f"uploads/{f.filename}", "wb")
-                fh.write(f.body)
-                fh.close()'''
-        
-
-
-
-
-
         context = {'e': 1, 'message': 'Message submitted!', 'user_type': user_type}
         return render_template('newentry.html', **context)
 
-    # GET
+    
+    #GET
     context = {'e': 0, 'message': '', 'user_type': user_type}
     return render_template('newentry.html', **context)
 

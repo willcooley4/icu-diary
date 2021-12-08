@@ -42,8 +42,9 @@ def template_entry():
         diagnosis  = request.form.get('diagnosis')
         procedures = request.form.get('procedures')
         goals      = request.form.get('goals')
+        patient    = request.form.get('patient')
         author     = flask.session["username"]
-
+        
         #combining templated entries into content for database submission
         #formatting for easy viewing in diary
         content = ''
@@ -68,12 +69,18 @@ def template_entry():
         if goals:
             content += ("Goals for patient discharge: " + goals + '\n')
 
+        
         cur.execute('''
-            SELECT diary_id
-            FROM contributors
-            WHERE contributor = '{}'
-        '''.format(session['username']))
-        diary_id = cur.fetchone()['diary_id']
+            SELECT diary_id 
+            FROM diaries
+            WHERE patient = '{}'
+        '''.format(patient))
+        row = cur.fetchone()
+
+        if row == None:
+            context = {'e': 2, 'message': 'Incorrect patient name or patient does not exist. Please try again.'}
+            return render_template('templateentry.html', **context)
+        diary_id = row['diary_id']
         
         #database submission
         cur.execute('''
@@ -84,7 +91,7 @@ def template_entry():
         conn.commit()
 
         context = {'e': 1, 'message': 'Message submitted!'}
-        return render_template('newentry.html', **context)
+        return render_template('templateentry.html', **context)
 
     #GET
     context = {'e': 0, 'message': ''}

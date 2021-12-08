@@ -67,8 +67,18 @@
           {{ message }}
         </div>
       {% endif %}
+
+      {% if e == 2 %}
+        <div class="alert alert-warning" role="alert">
+          {{ message }}
+        </div>
+      {% endif %}
   
       <form action="/entry_page" method="post" enctype="multipart/form-data">
+
+        <div class="form-group">
+          <input type="text" class="form-control" id="patient" placeholder="Patient name" name="patient">
+        </div>
   
         <div class="form-group">
           <input type="text" class="form-control" id="title" placeholder="Message title" name="title">  
