@@ -30,6 +30,9 @@ def new_diary():
     if row['user_type']  not in ['admin', 'physician']:
         return 'Access Denied. Your account type does not have access to this page.', 401
 
+    user_type = row['user_type']
+
+
     if request.method == 'POST':
 
         # get form contents
@@ -87,5 +90,5 @@ def new_diary():
         '''.format(session['username'], diary_id))
         conn.commit()
 
-    
-    return render_template('newdiary.html')
+    context = {'user_type': user_type}
+    return render_template('newdiary.html', **context)

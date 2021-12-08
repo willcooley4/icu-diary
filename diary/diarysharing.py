@@ -38,7 +38,9 @@ def diary_sharing():
 
         send_email(email, message)
 
-    return render_template('diarysharing.html')
+    context = {'user_type': row['user_type']}
+
+    return render_template('diarysharing.html', **context)
 
 
 def send_email(recipient_email, message):

@@ -26,6 +26,8 @@ def invite():
     if row['user_type']  not in ['admin', 'primary_contributor']:
         return 'Access Denied. Your account type does not have access to this page.', 401
 
+    user_type = row['user_type']
+
     if request.method == 'POST':
         # Access form data
         print(request.form)
@@ -83,7 +85,7 @@ def invite():
     rows = cur.fetchall()
     print(rows)
 
-    context = {'users': rows}
+    context = {'users': rows, 'user_type': user_type}
 
     # TODO: add closable info message when thing is submitted
     return render_template('invite.html', **context)

@@ -23,6 +23,14 @@ def entry_page():
     conn = get_db()
     cur = conn.cursor()
 
+    cur.execute('''
+        SELECT user_type FROM users
+        WHERE username = '{}'
+    '''.format(session['username']))
+    row = cur.fetchone()
+
+    user_type = row['user_type']
+
     if request.method == 'POST':
         title = request.form.get('title')
         content = request.form.get('content')
@@ -56,25 +64,10 @@ def entry_page():
 
 
 
-        context = {'e': 1, 'message': 'Message submitted!'}
+        context = {'e': 1, 'message': 'Message submitted!', 'user_type': user_type}
         return render_template('newentry.html', **context)
 
     # GET
-    context = {'e': 0, 'message': ''}
-
-    #Check for med staff template
-    author = flask.session["username"]
-    conn = get_db()
-    cur = conn.cursor()
-    cur.execute('''
-        SELECT * FROM users
-        WHERE username = '{}'
-    '''.format(author))
-    conn.commit()
-    usertype = cur.fetchone()['user_type']
-    if usertype == 'physician':
-        context = {'e': 2, 'message' : ''}
-        return render_template('newentry.html', **context)
-
+    context = {'e': 0, 'message': '', 'user_type': user_type}
     return render_template('newentry.html', **context)
 

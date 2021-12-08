@@ -32,17 +32,23 @@
               <li class="nav-item text-large">
                 <a class="nav-link" href="/entry_page/">Contribute</a>
               </li>
+              {% if user_type == "admin" or user_type == "primary_contributor" %}
               <li class="nav-item text-large">
                 <a class="nav-link" href="/diary_sharing/">Share Diary</a>
               </li>
+              {% endif %}
+              {% if user_type == "admin" %}
               <li class="nav-item text-large">
                 <a class="nav-link" href="/new_diary/">Create Diary</a>
               </li>
+              {% endif %}
+              {% if user_type == "admin" %}
               <li class="nav-item text-large">
-                <a class="nav-link" href="/invite">Join Requests</a>
+                <a class="nav-link" href="/admin">Register Doctor</a>
               </li>
+              {% endif %}
               <li class="nav-item text-large">
-                <a class="nav-link" href="#">Learn More</a>
+                <a class="nav-link" href="/learn_more/">Learn More</a>
               </li>
             </ul>
           </div>

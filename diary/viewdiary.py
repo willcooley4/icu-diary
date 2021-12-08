@@ -37,6 +37,8 @@ def view_diary():
     if row['user_type']  not in ['patient', 'admin']:
         return 'Access Denied. Your account type does not have access to this page.', 401
 
+    user_type = row['user_type']
+
     cur.execute('''
         SELECT id
         FROM diaries
@@ -51,7 +53,7 @@ def view_diary():
     '''.format(diary_id))
     rows = cur.fetchall()
 
-    context = {'entries': rows}
+    context = {'entries': rows, 'user_type': user_type}
     return render_template('viewdiary.html', **context)
 
 @bp.route('/uploads/<path:filename>', methods=['GET', 'POST'])
