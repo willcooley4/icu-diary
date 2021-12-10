@@ -5,6 +5,7 @@ from flask import (
 from diary.db import get_db
 import diary
 import flask
+import os
 
 bp = Blueprint('template_entry', __name__)  # NOTE: url_prefix?
 
@@ -66,7 +67,7 @@ def template_entry():
         # formatting for easy viewing in diary
         content = ''
         if bp:
-            content += ("Patient blood pressure: " + bp + "\n")
+            content += ("Patient blood pressure: " + bp + os.linesep)
         if pulse:
             content += ("Patient pulse: " + pulse + "\n")
         if ox:
