@@ -24,7 +24,7 @@ def diary_sharing():
     '''.format(session['username']))
     row = cur.fetchone()
     print(row)
-    if row['user_type']  not in ['admin', 'primary_contributor', 'contributor']:
+    if row['user_type']  not in ['primary_contributor', 'contributor']:
         return 'Access Denied. Your account type does not have access to this page.', 401
     if request.method == 'POST':
         # Access form data
