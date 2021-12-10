@@ -77,7 +77,12 @@
       <form action="/template_entry" method="post" enctype="multipart/form-data">
 
         <div class="form-group">
-          <input type="text" class="form-control" id="patient" placeholder="Patient name" name="patient">
+          <select class="form-control" id="patient" name="patient">
+            {% for patient in patients %}
+            <option value="{{ patient }}">{{ patient }}</option>
+            {% endfor %}
+          </select>
+          <!--<input type="text" class="form-control" id="patient" placeholder="Patient name" name="patient">-->
         </div> <br>
   
         <div class="form-group">

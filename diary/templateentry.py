@@ -28,9 +28,26 @@ def template_entry():
     print(row)
     if row['user_type']  not in ['admin', 'physician']:
         return 'Access Denied. Your account type does not have access to this page.', 401
+
+    patients = []
+    if row['user_type'] == 'physician':
+        cur.execute('''
+            SELECT diary_id FROM contributors
+            WHERE contributor = '{}' 
+        '''.format(session['username']))
+        rows = cur.fetchall()
+        for row in rows:
+            cur.execute('''
+                SELECT patient FROM diaries
+                WHERE id = {}
+            '''.format(row['diary_id']))
+            username = cur.fetchone()['patient']
+            patients.append(username)
+
+    print(patients)
     
     if request.method == 'POST':
-        #retrieving data from page
+        # retrieving data from page
         title      = request.form.get('title')
         bp         = request.form.get('bp')
         pulse      = request.form.get('pulse')
@@ -45,8 +62,8 @@ def template_entry():
         patient    = request.form.get('patient')
         author     = flask.session["username"]
         
-        #combining templated entries into content for database submission
-        #formatting for easy viewing in diary
+        # combining templated entries into content for database submission
+        # formatting for easy viewing in diary
         content = ''
         if bp:
             content += ("Patient blood pressure: " + bp + '\n')
@@ -78,11 +95,12 @@ def template_entry():
         row = cur.fetchone()
 
         if row == None:
-            context = {'e': 2, 'message': 'Incorrect patient name or patient does not exist. Please try again.'}
+            context = {'e': 2, 'message': 'Incorrect patient name or patient does not exist. Please try again.',
+            'patients': patients}
             return render_template('templateentry.html', **context)
-        diary_id = row['diary_id']
+        diary_id = row['id']
         
-        #database submission
+        # database submission
         cur.execute('''
             INSERT INTO diary_entries
             (title, contents, author, diary_id)
@@ -90,9 +108,10 @@ def template_entry():
         '''.format(title, content, author, diary_id))
         conn.commit()
 
-        context = {'e': 1, 'message': 'Message submitted!'}
+        context = {'e': 1, 'message': 'Message submitted!', 'patients': patients}
         return render_template('templateentry.html', **context)
 
-    #GET
-    context = {'e': 0, 'message': ''}
-    return render_template('templateentry.html')
+    # GET
+    print(patients)
+    context = {'e': 0, 'message': '', 'patients': patients}
+    return render_template('templateentry.html', **context)
