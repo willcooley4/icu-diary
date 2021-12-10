@@ -33,6 +33,22 @@ def entry_page():
 
     user_type = row['user_type']
 
+    patients = []
+    if user_type == 'physician':
+
+        cur.execute('''
+            SELECT diary_id FROM contributors
+            WHERE contributor = '{}' 
+        '''.format(session['username']))
+        rows = cur.fetchall()
+        for row in rows:
+            cur.execute('''
+                SELECT patient FROM diaries
+                WHERE id = {}
+            '''.format(row['diary_id']))
+            username = cur.fetchone()['patient']
+            patients.append(username)
+
     if request.method == 'POST':
         title = request.form.get('title')
         content = request.form.get('content')
@@ -49,6 +65,7 @@ def entry_page():
             diary_id = cur.fetchone()['diary_id']
         else:
             patient = request.form.get('patient')
+            print(patient)
             cur.execute('''
                 SELECT id 
                 FROM diaries
@@ -57,9 +74,11 @@ def entry_page():
             row = cur.fetchone()
 
             if row == None:
-                context = {'e': 2, 'message': 'Incorrect patient name or patient does not exist. Please try again.', 'user_type': user_type}
+                context = {'e': 2, 'message': 'Incorrect patient name or patient does not exist. Please try again.', 'user_type': user_type,
+                'patients': patients}
                 return render_template('newentry.html', **context)
-            diary_id = row['diary_id']
+            print(row)
+            diary_id = row['id']
 
 
         # access database and submit diary entry
@@ -70,12 +89,13 @@ def entry_page():
         '''.format(title, content, media, author, diary_id))
         conn.commit()
 
-        context = {'e': 1, 'message': 'Message submitted!', 'user_type': user_type}
+        context = {'e': 1, 'message': 'Message submitted!', 'user_type': user_type, 'patients': patients}
         return render_template('newentry.html', **context)
 
     
     #GET
-    context = {'e': 0, 'message': '', 'user_type': user_type}
+    context = {'e': 0, 'message': '', 'user_type': user_type, 'patients': patients}
+
     return render_template('newentry.html', **context)
 
 
