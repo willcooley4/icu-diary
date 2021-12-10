@@ -66,25 +66,25 @@ def template_entry():
         # formatting for easy viewing in diary
         content = ''
         if bp:
-            content += ("Patient blood pressure: " + bp + '\n')
+            content += ("Patient blood pressure: " + bp + "\n")
         if pulse:
-            content += ("Patient pulse: " + pulse + '\n')
+            content += ("Patient pulse: " + pulse + "\n")
         if ox:
-            content += ("Patient oxygen level: " + ox + '\n')
+            content += ("Patient oxygen level: " + ox + "\n")
         if temp:
-            content += ("Patient temperature: " + temp + '\n')
+            content += ("Patient temperature: " + temp + "\n")
         if pain:
-            content += ("Patient reported pain level: " + pain + '\n')
+            content += ("Patient reported pain level: " + pain + "\n")
         if feel:
-            content += ("Patient reported overall feeling: " + feel + '\n')
+            content += ("Patient reported overall feeling: " + feel + "\n")
         if meds:
-            content += ("Medicine administered to patient: " + meds + '\n')
+            content += ("Medicine administered to patient: " + meds + "\n")
         if diagnosis:
-            content += ("Updated patient diagnosis: " + diagnosis + '\n')
+            content += ("Updated patient diagnosis: " + diagnosis + "\n")
         if procedures:
-            content += ("New upcoming procedures: " + procedures + '\n')
+            content += ("New upcoming procedures: " + procedures + "\n")
         if goals:
-            content += ("Goals for patient discharge: " + goals + '\n')
+            content += ("Goals for patient discharge: " + goals + "\n")
 
         
         cur.execute('''
